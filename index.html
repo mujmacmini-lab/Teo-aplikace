@@ -283,6 +283,20 @@
   }
   .quiz-cta:active{transform:scale(0.97);}
 
+  .quiz-picker-title{
+    margin-top:18px;
+    font-size:1.2rem;
+    font-weight:800;
+    text-align:center;
+  }
+  .quiz-set-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:10px;
+  }
+  .quiz-set-grid .quiz-cta{margin-top:0;}
+
   /* ===== MODAL (animal card) ===== */
   .modal-overlay{
     position:fixed;
@@ -317,13 +331,15 @@
     position:absolute;
     top:10px;
     right:10px;
-    background:#f1f1f1;
+    background:rgba(255,255,255,0.9);
     border:none;
     border-radius:50%;
     width:38px;
     height:38px;
     font-size:1.3rem;
     cursor:pointer;
+    z-index:5;
+    box-shadow:0 2px 8px rgba(0,0,0,0.2);
   }
   .modal-emoji{
     font-size:7.5rem;
@@ -332,14 +348,14 @@
     margin:6px 0;
   }
   .modal-photo{
-    width:180px;
-    height:180px;
+    width:calc(100% + 44px);
+    max-width:none;
+    height:300px;
     object-fit:cover;
-    border-radius:50%;
+    object-position:center;
     display:block;
-    margin:6px auto;
-    border:4px solid #fff;
-    box-shadow:0 8px 20px rgba(0,0,0,0.25);
+    margin:-22px -22px 16px -22px;
+    border-radius:26px 26px 0 0;
   }
   @keyframes bounce{
     0%,100%{transform:translateY(0) rotate(0deg);}
@@ -830,7 +846,8 @@ let state = {
   quizIndex:0,
   quizScore:0,
   answered:false,
-  activeQuiz:[]
+  activeQuiz:[],
+  quizSetIndex:0
 };
 
 function getBadges(){
@@ -867,10 +884,20 @@ function shuffleArray(arr){
   }
   return a;
 }
-/* Pick a random subset of quiz questions for a habitat (so quizzes vary each time) */
-function pickQuiz(h){
-  const count = Math.min(5, h.quiz.length);
-  return shuffleArray(h.quiz).slice(0, count);
+/* Split a habitat's quiz pool into 4 separate quiz sets */
+function getQuizSets(h){
+  const total = h.quiz.length;
+  const setCount = 4;
+  const base = Math.floor(total/setCount);
+  const extra = total % setCount;
+  const sets = [];
+  let start = 0;
+  for(let i=0;i<setCount;i++){
+    const size = base + (i < extra ? 1 : 0);
+    sets.push(h.quiz.slice(start, start+size));
+    start += size;
+  }
+  return sets;
 }
 
 /* =======================================================
@@ -1005,7 +1032,10 @@ function renderHabitat(){
       <div class="dyk-title">🌟 Víš, že...?</div>
       ${h.didYouKnow.map(f=>`<p>${f}</p>`).join('')}
     </div>
-    <button class="quiz-cta" id="startQuiz">📝 Spustit kvíz o biotopu ${h.name}!</button>
+    <div class="quiz-picker-title">📝 Vyber si kvíz o biotopu ${h.name}!</div>
+    <div class="quiz-set-grid">
+      ${getQuizSets(h).map((set,i)=>`<button class="quiz-cta" data-quizset="${i}">Kvíz ${i+1}</button>`).join('')}
+    </div>
   `;
 
   document.getElementById('goHome').addEventListener('click', ()=>{
@@ -1019,13 +1049,17 @@ function renderHabitat(){
       showAnimalModal(h, parseInt(el.getAttribute('data-animal')));
     });
   });
-  document.getElementById('startQuiz').addEventListener('click', ()=>{
-    state.screen='quiz';
-    state.activeQuiz=pickQuiz(h);
-    state.quizIndex=0;
-    state.quizScore=0;
-    state.answered=false;
-    render();
+  document.querySelectorAll('[data-quizset]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const idx = parseInt(btn.getAttribute('data-quizset'));
+      state.screen='quiz';
+      state.quizSetIndex = idx;
+      state.activeQuiz = shuffleArray(getQuizSets(h)[idx]);
+      state.quizIndex=0;
+      state.quizScore=0;
+      state.answered=false;
+      render();
+    });
   });
 }
 
@@ -1166,7 +1200,7 @@ function renderResult(){
   document.getElementById('goHome').addEventListener('click', ()=>{ state.screen='home'; render(); });
   document.getElementById('goBadges2').addEventListener('click', ()=>{ state.screen='badges'; render(); });
   document.getElementById('retryQuiz').addEventListener('click', ()=>{
-    state.screen='quiz'; state.activeQuiz=pickQuiz(h); state.quizIndex=0; state.quizScore=0; state.answered=false; render();
+    state.screen='quiz'; state.activeQuiz=shuffleArray(getQuizSets(h)[state.quizSetIndex]); state.quizIndex=0; state.quizScore=0; state.answered=false; render();
   });
   document.getElementById('backHabitat').addEventListener('click', ()=>{
     state.screen='habitat'; render();
