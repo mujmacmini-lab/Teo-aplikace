@@ -220,6 +220,13 @@
     position:relative;
     box-shadow:0 6px 14px rgba(0,0,0,0.2);
     animation:pulse-ring 2.2s infinite;
+    overflow:hidden;
+  }
+  .animal-circle img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:50%;
   }
   .animal-spot:active .animal-circle{transform:scale(0.92);}
   .animal-spot .animal-name{
@@ -323,6 +330,16 @@
     display:inline-block;
     animation:bounce 1.2s infinite;
     margin:6px 0;
+  }
+  .modal-photo{
+    width:180px;
+    height:180px;
+    object-fit:cover;
+    border-radius:50%;
+    display:block;
+    margin:6px auto;
+    border:4px solid #fff;
+    box-shadow:0 8px 20px rgba(0,0,0,0.25);
   }
   @keyframes bounce{
     0%,100%{transform:translateY(0) rotate(0deg);}
@@ -552,22 +569,32 @@ const HABITATS = [
       'Mnoho mořských zvířat svítí ve tmě vlastním světlem.'
     ],
     animals:[
-      {emoji:'🐋', name:'Velryba modrá', facts:['Je největší zvíře, které kdy žilo na Zemi.','Její srdce je velké jako malé auto.','Mláďata vypijí denně až 400 litrů mléka.','Její zpěv slyší jiné velryby na stovky kilometrů.']},
-      {emoji:'🦈', name:'Žralok bílý', facts:['Má až 300 zubů ve více řadách.','Cítí kapku krve na velkou dálku.','Musí se stále hýbat, aby se nepotopil.','Dožívá se i 70 let.']},
-      {emoji:'🐬', name:'Delfín skákavý', facts:['Spí jen s jedním zavřeným okem.','Každý delfín má své jméno – svou píseň.','Umí vyskočit vysoko nad hladinu.','Žije ve skupinách, kterým se říká tlupy.']},
-      {emoji:'🐙', name:'Chobotnice', facts:['Má osm chytrých ramen plných přísavek.','Umí během sekundy změnit barvu i tvar.','Umí se protáhnout dírou velkou jako mince.','Má tři srdce, stejně jako oliheň.']},
-      {emoji:'🐢', name:'Mořská želva', facts:['Může se dožít více než 100 let.','Vrací se klást vejce na pláž, kde se narodila.','Mláďata se z vajíček klubou v noci.','Plave tisíce kilometrů přes celý oceán.']},
-      {emoji:'🪼', name:'Medúza', facts:['Žije na světě déle než dinosauři.','Nemá mozek, srdce ani kosti.','Je tvořená z 95 % vodou.','Některé druhy umí lehce světélkovat.']},
-      {emoji:'🦑', name:'Oliheň', facts:['Plave jako tryskáč – vystřikuje vodu.','Má tři srdce a modrou krev.','Umí měnit barvu, aby se schovala.','Vystřikuje černý inkoust, když má strach.']},
-      {emoji:'🦀', name:'Krab', facts:['Chodí bokem, aby byl rychlejší.','Když ztratí klepeto, doroste mu nové.','Má pevný pancíř, který chrání jeho tělo.','Některé druhy umí i šplhat na stromy.']},
-      {emoji:'🐡', name:'Ježík mořský', facts:['Když se bojí, nafoukne se jako balón.','Má ostré bodliny po celém těle.','Někteří mají v těle silný jed.','Jeho zuby rostou pořád dokola jako u zajíce.']}
+      {emoji:'🐋', name:'Velryba modrá', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Anim1754_-_Flickr_-_NOAA_Photo_Library.jpg/500px-Anim1754_-_Flickr_-_NOAA_Photo_Library.jpg', facts:['Je největší zvíře, které kdy žilo na Zemi.','Její srdce je velké jako malé auto.','Mláďata vypijí denně až 400 litrů mléka.','Její zpěv slyší jiné velryby na stovky kilometrů.']},
+      {emoji:'🦈', name:'Žralok bílý', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/White_shark.jpg/500px-White_shark.jpg', facts:['Má až 300 zubů ve více řadách.','Cítí kapku krve na velkou dálku.','Musí se stále hýbat, aby se nepotopil.','Dožívá se i 70 let.']},
+      {emoji:'🐬', name:'Delfín skákavý', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Tursiops_truncatus_01-cropped.jpg/500px-Tursiops_truncatus_01-cropped.jpg', facts:['Spí jen s jedním zavřeným okem.','Každý delfín má své jméno – svou píseň.','Umí vyskočit vysoko nad hladinu.','Žije ve skupinách, kterým se říká tlupy.']},
+      {emoji:'🐙', name:'Chobotnice', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Octopus2.jpg/500px-Octopus2.jpg', facts:['Má osm chytrých ramen plných přísavek.','Umí během sekundy změnit barvu i tvar.','Umí se protáhnout dírou velkou jako mince.','Má tři srdce, stejně jako oliheň.']},
+      {emoji:'🐢', name:'Mořská želva', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Green_sea_turtle_%28Chelonia_mydas%29_Moorea.jpg/500px-Green_sea_turtle_%28Chelonia_mydas%29_Moorea.jpg', facts:['Může se dožít více než 100 let.','Vrací se klást vejce na pláž, kde se narodila.','Mláďata se z vajíček klubou v noci.','Plave tisíce kilometrů přes celý oceán.']},
+      {emoji:'🪼', name:'Medúza', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Jelly_cc11.jpg/500px-Jelly_cc11.jpg', facts:['Žije na světě déle než dinosauři.','Nemá mozek, srdce ani kosti.','Je tvořená z 95 % vodou.','Některé druhy umí lehce světélkovat.']},
+      {emoji:'🦑', name:'Oliheň', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Sepioteuthis_sepioidea_%28Caribbean_Reef_Squid%29.jpg/500px-Sepioteuthis_sepioidea_%28Caribbean_Reef_Squid%29.jpg', facts:['Plave jako tryskáč – vystřikuje vodu.','Má tři srdce a modrou krev.','Umí měnit barvu, aby se schovala.','Vystřikuje černý inkoust, když má strach.']},
+      {emoji:'🦀', name:'Krab', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Cancer_pagurus.jpg/500px-Cancer_pagurus.jpg', facts:['Chodí bokem, aby byl rychlejší.','Když ztratí klepeto, doroste mu nové.','Má pevný pancíř, který chrání jeho tělo.','Některé druhy umí i šplhat na stromy.']},
+      {emoji:'🐡', name:'Ježík mořský', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Pez_erizo_moteado_%28Diodon_hystrix%29%2C_Cabo_Pulmo%2C_Baja_California%2C_M%C3%A9xico%2C_2024-12-19%2C_DD_23.jpg/500px-Pez_erizo_moteado_%28Diodon_hystrix%29%2C_Cabo_Pulmo%2C_Baja_California%2C_M%C3%A9xico%2C_2024-12-19%2C_DD_23.jpg', facts:['Když se bojí, nafoukne se jako balón.','Má ostré bodliny po celém těle.','Někteří mají v těle silný jed.','Jeho zuby rostou pořád dokola jako u zajíce.']}
     ],
     quiz:[
       {q:'Které zvíře je největší na světě?', options:['Žralok','Velryba modrá','Delfín'], correct:1},
       {q:'Kolik srdcí má oliheň?', options:['Jedno','Dvě','Tři'], correct:2},
       {q:'Co dělá chobotnice, když se chce schovat?', options:['Změní barvu','Vyskočí z vody','Usne'], correct:0},
       {q:'Jak dlouho může žít mořská želva?', options:['10 let','Přes 100 let','5 let'], correct:1},
-      {q:'Co dělá ježík mořský, když se bojí?', options:['Schová se do písku','Nafoukne se','Změní barvu'], correct:1}
+      {q:'Co dělá ježík mořský, když se bojí?', options:['Schová se do písku','Nafoukne se','Změní barvu'], correct:1},
+      {q:'Co dělá žralok bílý, aby se nepotopil?', options:['Musí se stále hýbat','Spí na dně','Plave pozadu'], correct:0},
+      {q:'Jak spí delfín skákavý?', options:['S oběma zavřenýma očima','S jedním zavřeným okem','Nespí vůbec'], correct:1},
+      {q:'Kolik ramen má chobotnice?', options:['Šest','Osm','Deset'], correct:1},
+      {q:'Kam se vrací mořská želva klást vejce?', options:['Na pláž, kde se narodila','Do hlubokého moře','Na libovolnou pláž'], correct:0},
+      {q:'Co je pravda o medúze?', options:['Má velký mozek','Nemá mozek ani srdce','Má kosti'], correct:1},
+      {q:'Co dělá oliheň, když má strach?', options:['Schová se do písku','Vystřikuje černý inkoust','Vyskočí z vody'], correct:1},
+      {q:'Kolik zubů může mít žralok bílý?', options:['Asi 10','Až 300','Jen 2'], correct:1},
+      {q:'Co krabovi doroste, když ho ztratí?', options:['Oko','Klepeto','Celý pancíř'], correct:1},
+      {q:'Jak dlouho se může žralok bílý dožít?', options:['Až 5 let','Až 70 let','Až 200 let'], correct:1},
+      {q:'Jak žijí delfíni skákaví?', options:['Ve skupinách – tlupách','Vždy sami','V jeskyních'], correct:0}
     ]
   },
   {
@@ -579,22 +606,32 @@ const HABITATS = [
       'Stromy v pralese jsou tak vysoké a hustě propletené, že tvoří vlastní „střechu" pralesa.'
     ],
     animals:[
-      {emoji:'🐆', name:'Jaguár', facts:['Je nejsilnější kočka v Jižní Americe.','Umí výborně plavat i lovit ve vodě.','Loví hlavně v noci a je skvěle zamaskovaný.','Jeho skvrny pomáhají schovat se mezi listy.']},
-      {emoji:'🦜', name:'Papoušek ara', facts:['Má jasně barevné peří jako duha.','Dokáže se dožít i 50 let.','Umí napodobovat lidská slova.','Žije v párech, které se mají moc rády.']},
-      {emoji:'🐒', name:'Opice kapucínská', facts:['Používá kameny k otevírání ořechů.','Žije ve skupinách a pomáhá ostatním.','Umí šplhat a skákat mezi stromy bleskově.','Komunikuje různými zvuky a výrazy.']},
-      {emoji:'🦥', name:'Lenochod', facts:['Pohybuje se tak pomalu, že na něm rostou řasy.','Spí až 15 hodin denně.','Ze stromu sleze jen jednou týdně.','Řasy na srsti mu pomáhají se schovat.']},
-      {emoji:'🐍', name:'Anakonda', facts:['Je jeden z nejdelších hadů na světě.','Umí výborně plavat a potápět se.','Kořist nejprve omotá a stiskne.','Nemusí jíst třeba i několik týdnů.']},
-      {emoji:'🦋', name:'Motýl Morpho', facts:['Jeho křídla zářivě modře svítí na slunci.','Barva křídel vzniká odrazem světla.','Jako housenka vypadá úplně jinak než jako motýl.','Křídla mu pomáhají splašit predátory.']},
-      {emoji:'🐸', name:'Žába pralesnička', facts:['Jasné barvy varují – jsem jedovatá!','Je menší než tvůj palec.','Některé druhy nosí mláďata na hřbetě.','Žije většinou vysoko ve stromech.']},
-      {emoji:'🦎', name:'Chameleon', facts:['Umí pohybovat každým okem jiným směrem.','Mění barvu podle nálady i teploty.','Jazyk vymrští rychlostí blesku na kořist.','Jeho nohy jsou jako kleště pro úchop větví.']},
-      {emoji:'🦍', name:'Gorila', facts:['Je největší primát na světě.','Gorily si rozumí pomocí gest a zvuků.','Většinu dne stráví hledáním a žvýkáním rostlin.','Mláďata se učí pozorováním dospělých.']}
+      {emoji:'🐆', name:'Jaguár', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Standing_jaguar.jpg/500px-Standing_jaguar.jpg', facts:['Je nejsilnější kočka v Jižní Americe.','Umí výborně plavat i lovit ve vodě.','Loví hlavně v noci a je skvěle zamaskovaný.','Jeho skvrny pomáhají schovat se mezi listy.']},
+      {emoji:'🦜', name:'Papoušek ara', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Ara_macao%2C_Ara_ararauna_and_Ara_militaris.jpg/500px-Ara_macao%2C_Ara_ararauna_and_Ara_militaris.jpg', facts:['Má jasně barevné peří jako duha.','Dokáže se dožít i 50 let.','Umí napodobovat lidská slova.','Žije v párech, které se mají moc rády.']},
+      {emoji:'🐒', name:'Opice kapucínská', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Capuchin_Costa_Rica.jpg/500px-Capuchin_Costa_Rica.jpg', facts:['Používá kameny k otevírání ořechů.','Žije ve skupinách a pomáhá ostatním.','Umí šplhat a skákat mezi stromy bleskově.','Komunikuje různými zvuky a výrazy.']},
+      {emoji:'🦥', name:'Lenochod', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Bicho-pregui%C3%A7a_3.jpg/500px-Bicho-pregui%C3%A7a_3.jpg', facts:['Pohybuje se tak pomalu, že na něm rostou řasy.','Spí až 15 hodin denně.','Ze stromu sleze jen jednou týdně.','Řasy na srsti mu pomáhají se schovat.']},
+      {emoji:'🐍', name:'Anakonda', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Sucuri_verde.jpg/500px-Sucuri_verde.jpg', facts:['Je jeden z nejdelších hadů na světě.','Umí výborně plavat a potápět se.','Kořist nejprve omotá a stiskne.','Nemusí jíst třeba i několik týdnů.']},
+      {emoji:'🦋', name:'Motýl Morpho', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Blue_Morpho_Butterfly_at_University_of_Florida.jpg/500px-Blue_Morpho_Butterfly_at_University_of_Florida.jpg', facts:['Jeho křídla zářivě modře svítí na slunci.','Barva křídel vzniká odrazem světla.','Jako housenka vypadá úplně jinak než jako motýl.','Křídla mu pomáhají splašit predátory.']},
+      {emoji:'🐸', name:'Žába pralesnička', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Blue-poison.dart.frog.and.Yellow-banded.dart.frog.arp.jpg/500px-Blue-poison.dart.frog.and.Yellow-banded.dart.frog.arp.jpg', facts:['Jasné barvy varují – jsem jedovatá!','Je menší než tvůj palec.','Některé druhy nosí mláďata na hřbetě.','Žije většinou vysoko ve stromech.']},
+      {emoji:'🦎', name:'Chameleon', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Panther_Chameleon_738367_%28cropped%29.jpg/500px-Panther_Chameleon_738367_%28cropped%29.jpg', facts:['Umí pohybovat každým okem jiným směrem.','Mění barvu podle nálady i teploty.','Jazyk vymrští rychlostí blesku na kořist.','Jeho nohy jsou jako kleště pro úchop větví.']},
+      {emoji:'🦍', name:'Gorila', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Gorille_des_plaines_de_l%27ouest_%C3%A0_l%27Espace_Zoologique.jpg/500px-Gorille_des_plaines_de_l%27ouest_%C3%A0_l%27Espace_Zoologique.jpg', facts:['Je největší primát na světě.','Gorily si rozumí pomocí gest a zvuků.','Většinu dne stráví hledáním a žvýkáním rostlin.','Mláďata se učí pozorováním dospělých.']}
     ],
     quiz:[
       {q:'Proč na lenochodovi rostou řasy?', options:['Je velmi pomalý','Je zelený','Žije ve vodě'], correct:0},
       {q:'Co dělá opice kapucínská s kameny?', options:['Staví domy','Otevírá ořechy','Hraje si na bubny'], correct:1},
       {q:'Co znamenají jasné barvy žáby pralesničky?', options:['Je smutná','Je jedovatá','Je hladová'], correct:1},
       {q:'Čím je gorila výjimečná?', options:['Je nejmenší primát','Je největší primát','Umí létat'], correct:1},
-      {q:'Jak chameleon sleduje okolí?', options:['Otáčí celou hlavou','Pohybuje každým okem jinam','Má čtyři oči'], correct:1}
+      {q:'Jak chameleon sleduje okolí?', options:['Otáčí celou hlavou','Pohybuje každým okem jinam','Má čtyři oči'], correct:1},
+      {q:'Jak loví jaguár?', options:['Jen ve dne','Hlavně v noci a je zamaskovaný','Nikdy neplave'], correct:1},
+      {q:'Jak dlouho se může dožít papoušek ara?', options:['5 let','50 let','200 let'], correct:1},
+      {q:'Co umí papoušek ara?', options:['Napodobovat slova','Měnit barvu','Plavat pod vodou'], correct:0},
+      {q:'Jak dlouho denně spí lenochod?', options:['2 hodiny','15 hodin','Nikdy nespí'], correct:1},
+      {q:'Co dělá anakonda s kořistí?', options:['Omotá a stiskne','Kousne a uteče','Vystřelí jed'], correct:0},
+      {q:'Jak vypadá housenka motýla Morpho?', options:['Stejně jako motýl','Úplně jinak než motýl','Je průhledná'], correct:1},
+      {q:'Jak velká je žába pralesnička?', options:['Větší než pes','Menší než tvůj palec','Jako kočka'], correct:1},
+      {q:'Jak chameleon loví hmyz?', options:['Honí ho dlouho','Vymrští jazyk rychlostí blesku','Čeká, až sám přijde'], correct:1},
+      {q:'Jak se gorily spolu domlouvají?', options:['Gesty a zvuky','Píšou si vzkazy','Vůbec se nedomlouvají'], correct:0},
+      {q:'V čem je jaguár dobrý, na rozdíl od jiných koček?', options:['Umí plavat','Umí létat','Umí zpívat'], correct:0}
     ]
   },
   {
@@ -606,22 +643,32 @@ const HABITATS = [
       'Některé pouštní rostliny i zvířata umí vydržet bez vody i celé měsíce.'
     ],
     animals:[
-      {emoji:'🐪', name:'Velbloud dvouhrbý', facts:['V hrbech má zásoby tuku, ne vodu.','Umí vypít až 100 litrů vody najednou.','Má dlouhé řasy, které chrání oči před pískem.','Umí zavřít nosní dírky proti písečné bouři.']},
-      {emoji:'🦊', name:'Liška fenek', facts:['Má největší uši ze všech lišek – chladí ji.','Loví v noci, kdy je v poušti chládek.','Je to nejmenší druh lišky na světě.','Chodidla má huňatá, aby nepropadala v písku.']},
-      {emoji:'🐍', name:'Zmije rohatá', facts:['Pohybuje se pískem do strany jako vlnka.','Schovává se v písku a čeká na kořist.','Tímto pohybem zanechává v písku zvláštní stopy.','Na lov vychází nejčastěji v noci.']},
-      {emoji:'🦂', name:'Štír', facts:['Pod UV světlem modře svítí.','Nosí svá mláďata na hřbetě.','Má klepeta na úchop a žihadlo na obranu.','Dokáže přežít i tam, kde nic jiného nevydrží.']},
-      {emoji:'🦅', name:'Sokol stěhovavý', facts:['Je nejrychlejší zvíře na světě – v letu.','Při lovu se vrhá dolů jako raketa.','Má vynikající zrak – vidí kořist z velké výšky.','Žije téměř na všech kontinentech.']},
-      {emoji:'🦎', name:'Agama trnitá', facts:['Umí běhat po dvou nohách, aby byla rychlejší.','Barvu mění podle teploty těla.','Přes den se sluní na kamenech.','Živí se hmyzem i rostlinami.']},
-      {emoji:'🐭', name:'Pískomil', facts:['Vodu získává jen ze semínek.','Žije v podzemních tunelech pod pouští.','Přes den se schovává před horkem v noře.','Má dlouhý ocas, který mu pomáhá s rovnováhou.']},
-      {emoji:'🦉', name:'Sova pustovka', facts:['Na rozdíl od jiných sov žije ve dne.','Bydlí v dírách v zemi, ne na stromech.','Loví hlavně hmyz a malé hlodavce.','Při ohrožení dokáže napodobit zvuk hada.']},
-      {emoji:'🦔', name:'Ježek pouštní', facts:['Přes den se schovává, loví v noci.','Když má strach, srolu je se do kuličky.','Bodliny ho chrání před predátory.','Živí se hmyzem, šneky i drobnými plody.']}
+      {emoji:'🐪', name:'Velbloud dvouhrbý', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Camelus_bactrianus_%2855026866188%29.jpg/500px-Camelus_bactrianus_%2855026866188%29.jpg', facts:['V hrbech má zásoby tuku, ne vodu.','Umí vypít až 100 litrů vody najednou.','Má dlouhé řasy, které chrání oči před pískem.','Umí zavřít nosní dírky proti písečné bouři.']},
+      {emoji:'🦊', name:'Liška fenek', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Fennec_Fox_Vulpes_zerda.jpg/500px-Fennec_Fox_Vulpes_zerda.jpg', facts:['Má největší uši ze všech lišek – chladí ji.','Loví v noci, kdy je v poušti chládek.','Je to nejmenší druh lišky na světě.','Chodidla má huňatá, aby nepropadala v písku.']},
+      {emoji:'🐍', name:'Zmije rohatá', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Hornviper_Cerastes_cerastes.jpg/500px-Hornviper_Cerastes_cerastes.jpg', facts:['Pohybuje se pískem do strany jako vlnka.','Schovává se v písku a čeká na kořist.','Tímto pohybem zanechává v písku zvláštní stopy.','Na lov vychází nejčastěji v noci.']},
+      {emoji:'🦂', name:'Štír', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Deathstalker_ST_07.JPG/500px-Deathstalker_ST_07.JPG', facts:['Pod UV světlem modře svítí.','Nosí svá mláďata na hřbetě.','Má klepeta na úchop a žihadlo na obranu.','Dokáže přežít i tam, kde nic jiného nevydrží.']},
+      {emoji:'🦅', name:'Sokol stěhovavý', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Falco_peregrinus_m_Humber_Bay_Park_Toronto.jpg/500px-Falco_peregrinus_m_Humber_Bay_Park_Toronto.jpg', facts:['Je nejrychlejší zvíře na světě – v letu.','Při lovu se vrhá dolů jako raketa.','Má vynikající zrak – vidí kořist z velké výšky.','Žije téměř na všech kontinentech.']},
+      {emoji:'🦎', name:'Agama trnitá', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Thornydevil.jpg/500px-Thornydevil.jpg', facts:['Umí běhat po dvou nohách, aby byla rychlejší.','Barvu mění podle teploty těla.','Přes den se sluní na kamenech.','Živí se hmyzem i rostlinami.']},
+      {emoji:'🐭', name:'Pískomil', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Meriones_unguiculatus_%28wild%29.jpg/500px-Meriones_unguiculatus_%28wild%29.jpg', facts:['Vodu získává jen ze semínek.','Žije v podzemních tunelech pod pouští.','Přes den se schovává před horkem v noře.','Má dlouhý ocas, který mu pomáhá s rovnováhou.']},
+      {emoji:'🦉', name:'Sova pustovka', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Southern_burrowing_owl_%28Athene_cunicularia_cunicularia%29_Colonia.jpg/500px-Southern_burrowing_owl_%28Athene_cunicularia_cunicularia%29_Colonia.jpg', facts:['Na rozdíl od jiných sov žije ve dne.','Bydlí v dírách v zemi, ne na stromech.','Loví hlavně hmyz a malé hlodavce.','Při ohrožení dokáže napodobit zvuk hada.']},
+      {emoji:'🦔', name:'Ježek pouštní', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Desert_Hedgehog.png/500px-Desert_Hedgehog.png', facts:['Přes den se schovává, loví v noci.','Když má strach, srolu je se do kuličky.','Bodliny ho chrání před predátory.','Živí se hmyzem, šneky i drobnými plody.']}
     ],
     quiz:[
       {q:'Co má velbloud v hrbech?', options:['Vodu','Tuk','Písek'], correct:1},
       {q:'Proč má liška fenek velké uši?', options:['Aby lépe slyšela a chladila se','Aby vypadala vtipně','Aby lépe viděla'], correct:0},
       {q:'Které zvíře je nejrychlejší na světě – v letu?', options:['Sokol stěhovavý','Sova pustovka','Štír'], correct:0},
       {q:'Co dělá ježek pouštní, když se bojí?', options:['Uteče','Srolu je se do kuličky','Zakope se'], correct:1},
-      {q:'Jak agama trnitá běhá rychleji?', options:['Na čtyřech nohách','Po dvou nohách','Skáče'], correct:1}
+      {q:'Jak agama trnitá běhá rychleji?', options:['Na čtyřech nohách','Po dvou nohách','Skáče'], correct:1},
+      {q:'Kolik litrů vody vypije velbloud najednou?', options:['10 litrů','100 litrů','1000 litrů'], correct:1},
+      {q:'Proč má velbloud dlouhé řasy?', options:['Aby vypadal hezky','Chrání oči před pískem','Aby lépe viděl v noci'], correct:1},
+      {q:'Jak se pohybuje zmije rohatá v písku?', options:['Rovně dopředu','Do strany jako vlnka','Skáče'], correct:1},
+      {q:'Co dělá štír pod UV světlem?', options:['Zmizí','Svítí modře','Zčervená'], correct:1},
+      {q:'Jak štír nosí svá mláďata?', options:['V tlamě','Na hřbetě','V díře'], correct:1},
+      {q:'Jak loví sokol stěhovavý?', options:['Vrhá se dolů jako raketa','Čeká na zemi','Plave'], correct:0},
+      {q:'Odkud má pískomil vodu?', options:['Pije z louže','Ze semínek, která jí','Z deště'], correct:1},
+      {q:'Kdy je sova pustovka aktivní?', options:['V noci','Ve dne','Jen za úplňku'], correct:1},
+      {q:'Kde žije sova pustovka?', options:['Na stromech','V dírách v zemi','Ve vzduchu'], correct:1},
+      {q:'Čím se živí agama trnitá?', options:['Jen masem','Hmyzem i rostlinami','Jen pískem'], correct:1}
     ]
   },
   {
@@ -633,22 +680,32 @@ const HABITATS = [
       'Mnoho arktických zvířat má bílou nebo světlou srst, díky které se schovají ve snehu.'
     ],
     animals:[
-      {emoji:'🐻‍❄️', name:'Lední medvěd', facts:['Má černou kůži a průhlednou srst.','Umí plavat desítky kilometrů v moři.','Je to největší medvěd a skvělý plavec.','Čichem najde tuleně i pod metrem ledu.']},
-      {emoji:'🦭', name:'Tuleň', facts:['Pod kůží má vrstvu tuku proti chladu.','Na ledu je pomalý, ve vodě rychlý jako šipka.','Umí vydržet pod vodou dlouhé minuty.','Mláďata mají hebkou bílou srst.']},
-      {emoji:'🦊', name:'Polární liška', facts:['V zimě je bílá, v létě hnědá.','Má hustou srst i na chodidlech.','Sleduje lední medvědy a sbírá zbytky jídla.','Slyší kořist pohybující se pod sněhem.']},
-      {emoji:'🦌', name:'Sob polární', facts:['Jeho kopyta v zimě tvrdnou jako brusle.','Putuje na velké vzdálenosti za potravou.','I samice mají parohy, na rozdíl od jiných jelenů.','Dokáže najít jídlo pod vrstvou sněhu.']},
-      {emoji:'🦉', name:'Sněžná sova', facts:['Má husté peří, které ji hřeje.','Loví hlavně přes den, ne v noci.','Žije na otevřené tundře bez stromů.','Dokáže ulovit ptáka i drobného savce.']},
-      {emoji:'🐧', name:'Tučňák', facts:['Žije na jižním pólu, ne na severním.','Pod vodou „letí" pomocí svých křídel.','Vejce hřejí oba rodiče na střídačku.','Na souši kloužou na bříšku po ledu.']},
-      {emoji:'🐋', name:'Narval', facts:['Má dlouhý spirálový kel jako jednorožec.','Celý život žije v ledových vodách Arktidy.','Kel může mít až tři metry.','Potápí se velmi hluboko za potravou.']},
-      {emoji:'🦫', name:'Rosomák', facts:['Je malý, ale velmi silný a odvážný.','Jeho srst nezamrzá ani ve velkém mrazu.','Umí ujít obrovské vzdálenosti při hledání potravy.','Patří do stejné rodiny jako kuny.']},
-      {emoji:'🐺', name:'Vlk arktický', facts:['Má bílou srst, aby se schoval ve snehu.','Žije a loví ve smečce.','Smečka spolu loví i velká zvířata.','Vydrží bez jídla i několik dní.']}
+      {emoji:'🐻‍❄️', name:'Lední medvěd', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Polar_Bear_-_Alaska_%28cropped%29.jpg/500px-Polar_Bear_-_Alaska_%28cropped%29.jpg', facts:['Má černou kůži a průhlednou srst.','Umí plavat desítky kilometrů v moři.','Je to největší medvěd a skvělý plavec.','Čichem najde tuleně i pod metrem ledu.']},
+      {emoji:'🦭', name:'Tuleň', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Common_seal_%28Phoca_vitulina%29_2.jpg/500px-Common_seal_%28Phoca_vitulina%29_2.jpg', facts:['Pod kůží má vrstvu tuku proti chladu.','Na ledu je pomalý, ve vodě rychlý jako šipka.','Umí vydržet pod vodou dlouhé minuty.','Mláďata mají hebkou bílou srst.']},
+      {emoji:'🦊', name:'Polární liška', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Vulpes_lagopus_in_Iceland_%28cropped_3%29.jpg/500px-Vulpes_lagopus_in_Iceland_%28cropped_3%29.jpg', facts:['V zimě je bílá, v létě hnědá.','Má hustou srst i na chodidlech.','Sleduje lední medvědy a sbírá zbytky jídla.','Slyší kořist pohybující se pod sněhem.']},
+      {emoji:'🦌', name:'Sob polární', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Reinbukken_p%C3%A5_frisk_gr%C3%B8nt_beite._-_panoramio.jpg/500px-Reinbukken_p%C3%A5_frisk_gr%C3%B8nt_beite._-_panoramio.jpg', facts:['Jeho kopyta v zimě tvrdnou jako brusle.','Putuje na velké vzdálenosti za potravou.','I samice mají parohy, na rozdíl od jiných jelenů.','Dokáže najít jídlo pod vrstvou sněhu.']},
+      {emoji:'🦉', name:'Sněžná sova', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/SnowyOwlAmericanBlackDuck.jpg/500px-SnowyOwlAmericanBlackDuck.jpg', facts:['Má husté peří, které ji hřeje.','Loví hlavně přes den, ne v noci.','Žije na otevřené tundře bez stromů.','Dokáže ulovit ptáka i drobného savce.']},
+      {emoji:'🐧', name:'Tučňák', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Aptenodytes_forsteri_-Snow_Hill_Island%2C_Antarctica_-adults_and_juvenile-8.jpg/500px-Aptenodytes_forsteri_-Snow_Hill_Island%2C_Antarctica_-adults_and_juvenile-8.jpg', facts:['Žije na jižním pólu, ne na severním.','Pod vodou „letí" pomocí svých křídel.','Vejce hřejí oba rodiče na střídačku.','Na souši kloužou na bříšku po ledu.']},
+      {emoji:'🐋', name:'Narval', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/%D0%9D%D0%B0%D1%80%D0%B2%D0%B0%D0%BB_%D0%B2_%D1%80%D0%BE%D1%81%D1%81%D0%B8%D0%B9%D1%81%D0%BA%D0%BE%D0%B9_%D0%90%D1%80%D0%BA%D1%82%D0%B8%D0%BA%D0%B5.jpg/500px-%D0%9D%D0%B0%D1%80%D0%B2%D0%B0%D0%BB_%D0%B2_%D1%80%D0%BE%D1%81%D1%81%D0%B8%D0%B9%D1%81%D0%BA%D0%BE%D0%B9_%D0%90%D1%80%D0%BA%D1%82%D0%B8%D0%BA%D0%B5.jpg', facts:['Má dlouhý spirálový kel jako jednorožec.','Celý život žije v ledových vodách Arktidy.','Kel může mít až tři metry.','Potápí se velmi hluboko za potravou.']},
+      {emoji:'🦫', name:'Rosomák', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/J%C3%A4rv1.jpg/500px-J%C3%A4rv1.jpg', facts:['Je malý, ale velmi silný a odvážný.','Jeho srst nezamrzá ani ve velkém mrazu.','Umí ujít obrovské vzdálenosti při hledání potravy.','Patří do stejné rodiny jako kuny.']},
+      {emoji:'🐺', name:'Vlk arktický', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Arctic_Wolf_in_Aulavik_National_Park_04_%28cropped%29.jpg/500px-Arctic_Wolf_in_Aulavik_National_Park_04_%28cropped%29.jpg', facts:['Má bílou srst, aby se schoval ve snehu.','Žije a loví ve smečce.','Smečka spolu loví i velká zvířata.','Vydrží bez jídla i několik dní.']}
     ],
     quiz:[
       {q:'Jakou barvu kůže má lední medvěd pod srstí?', options:['Bílou','Černou','Růžovou'], correct:1},
       {q:'Kde žije tučňák?', options:['Na severním pólu','Na jižním pólu','V poušti'], correct:1},
       {q:'Čím narval připomíná jednorožce?', options:['Má rohy','Má dlouhý kel','Má křídla'], correct:1},
       {q:'Jakou barvu má polární liška v zimě?', options:['Bílou','Hnědou','Černou'], correct:0},
-      {q:'Jak sob zvládá chodit po ledu?', options:['Má brusle','Kopyta mu v zimě tvrdnou','Neumí to'], correct:1}
+      {q:'Jak sob zvládá chodit po ledu?', options:['Má brusle','Kopyta mu v zimě tvrdnou','Neumí to'], correct:1},
+      {q:'Jak daleko umí lední medvěd plavat?', options:['Pár metrů','Desítky kilometrů','Nikdy neplave'], correct:1},
+      {q:'Jak tuleň chrání tělo před chladem?', options:['Vrstvou tuku pod kůží','Hustými chlupy na hlavě','Nijak'], correct:0},
+      {q:'Jaký je tuleň ve vodě?', options:['Pomalý','Rychlý jako šipka','Nepohyblivý'], correct:1},
+      {q:'Proč polární liška sleduje lední medvědy?', options:['Chce si hrát','Sbírá zbytky jídla','Bojí se jich'], correct:1},
+      {q:'Co dokáže sob najít pod sněhem?', options:['Jídlo','Vodu','Jiné soby'], correct:0},
+      {q:'Kdy loví sněžná sova?', options:['V noci','Hlavně přes den','Nikdy'], correct:1},
+      {q:'Jak tučňák hřeje vejce?', options:['Jen samička','Oba rodiče na střídačku','Vejce hřeje sníh'], correct:1},
+      {q:'Jak velký může být kel narvala?', options:['Až 3 metry','Jen 10 cm','Až 30 metrů'], correct:0},
+      {q:'Do jaké rodiny patří rosomák?', options:['Ke kočkám','Ke kunám','K medvědům'], correct:1},
+      {q:'Jak vlci arktičtí loví?', options:['Sami','Ve smečce','Nikdy neloví'], correct:1}
     ]
   },
   {
@@ -660,22 +717,32 @@ const HABITATS = [
       'Savana má období dešťů a období sucha – zvířata se podle toho stěhují.'
     ],
     animals:[
-      {emoji:'🦁', name:'Lev', facts:['Je jediná kočka, která žije ve skupině – smečce.','Lvice loví častěji než lvi.','Lvi spí a odpočívají většinu dne.','Jejich řev je slyšet na kilometry daleko.']},
-      {emoji:'🐘', name:'Slon africký', facts:['Je největší suchozemské zvíře na světě.','Chobotem nasaje vodu a „vypije" ji do tlamy.','Chobot má přes 40 tisíc svalů.','Sloni si pamatují cesty k vodě na roky.']},
-      {emoji:'🦒', name:'Žirafa', facts:['Má nejdelší krk ze všech zvířat.','Spí jen pár hodin denně, často postojí.','Má stejný počet krčních obratlů jako člověk – jen větší.','Jazyk má dlouhý a umí jím sahat na listy vysoko.']},
-      {emoji:'🦓', name:'Zebra', facts:['Žádné dvě zebry nemají stejné pruhy.','Pruhy mohou zmást mouchy i predátory.','Žije ve stádech pro větší bezpečí.','Mláďata umí běhat už pár hodin po narození.']},
-      {emoji:'🦏', name:'Nosorožec', facts:['Jeho rohy jsou ze stejné látky jako naše nehty.','Vidí špatně, ale má skvělý čich a sluch.','Rád se válí v blátě, aby se ochladil.','Je to obrovské zvíře, ale živí se jen rostlinami.']},
-      {emoji:'🦛', name:'Hroch', facts:['Ve vodě je lehký jako pírko, na souši pomalý.','Je velmi nebezpečný, i když vypadá mírně.','Většinu dne tráví ponořený ve vodě.','Na pastvu vychází v noci.']},
-      {emoji:'🐆', name:'Gepard', facts:['Je nejrychlejší zvíře na souši.','Zrychlí z 0 na 100 km/h za 3 sekundy.','Při běhu mu pomáhá ocas udržet rovnováhu.','Po rychlém běhu si musí dlouho odpočinout.']},
-      {emoji:'🐊', name:'Krokodýl nilský', facts:['Čeká nehybně ve vodě a pak rychle útočí.','Má jeden z nejsilnějších kousnutí na světě.','Umí být pod vodou bez nadechnutí velmi dlouho.','Mláďata se klubou z vajec zahrabaných v písku.']},
-      {emoji:'🦅', name:'Orel bojovný', facts:['Je jeden z nejsilnějších draví ptáků Afriky.','Loví i zvířata větší než on sám.','Má rozpětí křídel přes dva metry.','Hnízdo si staví vysoko na stromech.']}
+      {emoji:'🦁', name:'Lev', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/020_The_lion_king_Snyggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/500px-020_The_lion_king_Snyggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg', facts:['Je jediná kočka, která žije ve skupině – smečce.','Lvice loví častěji než lvi.','Lvi spí a odpočívají většinu dne.','Jejich řev je slyšet na kilometry daleko.']},
+      {emoji:'🐘', name:'Slon africký', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/178_Male_African_bush_elephant_in_Etosha_National_Park_Photo_by_Giles_Laurent.jpg/500px-178_Male_African_bush_elephant_in_Etosha_National_Park_Photo_by_Giles_Laurent.jpg', facts:['Je největší suchozemské zvíře na světě.','Chobotem nasaje vodu a „vypije" ji do tlamy.','Chobot má přes 40 tisíc svalů.','Sloni si pamatují cesty k vodě na roky.']},
+      {emoji:'🦒', name:'Žirafa', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Giraffe_Mikumi_National_Park.jpg/500px-Giraffe_Mikumi_National_Park.jpg', facts:['Má nejdelší krk ze všech zvířat.','Spí jen pár hodin denně, často postojí.','Má stejný počet krčních obratlů jako člověk – jen větší.','Jazyk má dlouhý a umí jím sahat na listy vysoko.']},
+      {emoji:'🦓', name:'Zebra', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Equus_quagga_burchellii_-_Etosha%2C_2014.jpg/500px-Equus_quagga_burchellii_-_Etosha%2C_2014.jpg', facts:['Žádné dvě zebry nemají stejné pruhy.','Pruhy mohou zmást mouchy i predátory.','Žije ve stádech pro větší bezpečí.','Mláďata umí běhat už pár hodin po narození.']},
+      {emoji:'🦏', name:'Nosorožec', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/109_Male_White_rhinoceros_walking_in_the_Kalahari_Desert_of_Namibia_Photo_by_Giles_Laurent.jpg/500px-109_Male_White_rhinoceros_walking_in_the_Kalahari_Desert_of_Namibia_Photo_by_Giles_Laurent.jpg', facts:['Jeho rohy jsou ze stejné látky jako naše nehty.','Vidí špatně, ale má skvělý čich a sluch.','Rád se válí v blátě, aby se ochladil.','Je to obrovské zvíře, ale živí se jen rostlinami.']},
+      {emoji:'🦛', name:'Hroch', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Portrait_Hippopotamus_in_the_water.jpg/500px-Portrait_Hippopotamus_in_the_water.jpg', facts:['Ve vodě je lehký jako pírko, na souši pomalý.','Je velmi nebezpečný, i když vypadá mírně.','Většinu dne tráví ponořený ve vodě.','Na pastvu vychází v noci.']},
+      {emoji:'🐆', name:'Gepard', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Male_cheetah_facing_left_in_South_Africa.jpg/500px-Male_cheetah_facing_left_in_South_Africa.jpg', facts:['Je nejrychlejší zvíře na souši.','Zrychlí z 0 na 100 km/h za 3 sekundy.','Při běhu mu pomáhá ocas udržet rovnováhu.','Po rychlém běhu si musí dlouho odpočinout.']},
+      {emoji:'🐊', name:'Krokodýl nilský', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/NileCrocodile.jpg/500px-NileCrocodile.jpg', facts:['Čeká nehybně ve vodě a pak rychle útočí.','Má jeden z nejsilnějších kousnutí na světě.','Umí být pod vodou bez nadechnutí velmi dlouho.','Mláďata se klubou z vajec zahrabaných v písku.']},
+      {emoji:'🦅', name:'Orel bojovný', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Martial_eagle_%28Polemaetus_bellicosus%29.jpg/500px-Martial_eagle_%28Polemaetus_bellicosus%29.jpg', facts:['Je jeden z nejsilnějších draví ptáků Afriky.','Loví i zvířata větší než on sám.','Má rozpětí křídel přes dva metry.','Hnízdo si staví vysoko na stromech.']}
     ],
     quiz:[
       {q:'Které zvíře má nejdelší krk?', options:['Slon','Žirafa','Zebra'], correct:1},
       {q:'Co dělá slon svým chobotem?', options:['Kope','Saje vodu','Létá'], correct:1},
       {q:'Které zvíře je nejrychlejší na souši?', options:['Lev','Gepard','Hroch'], correct:1},
       {q:'Z čeho je roh nosorožce?', options:['Z kosti','Ze stejné látky jako nehty','Ze dřeva'], correct:1},
-      {q:'Kdo loví ve smečce častěji?', options:['Lvi','Lvice','Stejně oba'], correct:1}
+      {q:'Kdo loví ve smečce častěji?', options:['Lvi','Lvice','Stejně oba'], correct:1},
+      {q:'Co dělají lvi většinu dne?', options:['Loví','Spí a odpočívají','Plavou'], correct:1},
+      {q:'Na co si sloni pamatují roky?', options:['Cesty k vodě','Jména ostatních slonů','Barvu trávy'], correct:0},
+      {q:'Kolik hodin denně spí žirafa?', options:['Jen pár hodin','Celý den','20 hodin'], correct:0},
+      {q:'Proč mají zebry pruhy?', options:['Pro krásu','Mohou zmást mouchy a predátory','Aby se zahřály'], correct:1},
+      {q:'Jak rychle umí běhat mláďata zebry?', options:['Až po týdnech','Pár hodin po narození','Nikdy neběhají'], correct:1},
+      {q:'Co dělá nosorožec, aby se ochladil?', options:['Válí se v blátě','Schová se do stínu','Skáče do řeky'], correct:0},
+      {q:'Kdy je hroch aktivní na pastvě?', options:['Ve dne','V noci','Nikdy nejí'], correct:1},
+      {q:'Co potřebuje gepard po rychlém běhu?', options:['Najíst se hned','Dlouhý odpočinek','Nic, běží dál'], correct:1},
+      {q:'Jak loví krokodýl nilský?', options:['Honí kořist na souši','Čeká nehybně ve vodě a útočí','Loví na stromech'], correct:1},
+      {q:'Jaké je rozpětí křídel orla bojovného?', options:['Přes dva metry','Asi 20 cm','Přes deset metrů'], correct:0}
     ]
   },
   {
@@ -687,22 +754,32 @@ const HABITATS = [
       'Korálové útesy bývají tak barevné, že se jim říká „mořské duhy".'
     ],
     animals:[
-      {emoji:'🐠', name:'Klauní rybka (Nemo)', facts:['Žije v sasankách, které ji chrání.','Je imunní vůči žahavým chapadlům sasanky.','Mláďata si hlídá hlavně tatínek.','Vždy se vrací do stejné sasanky.']},
-      {emoji:'🐡', name:'Ryba čtverzubec', facts:['Umí se nafouknout, aby ji nikdo nesnědl.','Některé druhy jsou velmi jedovaté.','Plave pomaleji než většina ryb.','Má silné zuby na drcení korýšů.']},
-      {emoji:'🦀', name:'Krab korálový', facts:['Žije skrytě mezi korály a kameny.','Klepeta používá na obranu i lov.','Některé druhy si na krunýř pěstují malé sasanky.','Pohybuje se hlavně v noci.']},
-      {emoji:'🐢', name:'Karetová želva', facts:['Pomáhá udržovat útes zdravý – sní houby.','Má krásný, vzorovaný krunýř.','Dýchá vzduch, i když žije v moři.','Na nádech musí čas od času vyplout na hladinu.']},
-      {emoji:'🦞', name:'Humr', facts:['Umí „cvakat" klepety a vydávat zvuky.','Když mu klepeto upadne, doroste nové.','Aby mohl růst, musí svlékat svůj pancíř.','Chodí po dně na deseti nohách.']},
-      {emoji:'🦑', name:'Sépie', facts:['Umí bleskově měnit barvu i vzor kůže.','Má skvělé oči, vidí i v hloubce.','Stejně jako chobotnice vystřikuje inkoust.','Plave pomocí ploutve kolem celého těla.']},
-      {emoji:'🦈', name:'Žralok útesový', facts:['Je menší a klidnější než žralok bílý.','Pomáhá udržovat útes v rovnováze.','Přes den často odpočívá na dně.','Loví hlavně ryby a chobotnice.']},
-      {emoji:'🪼', name:'Medúza korálová', facts:['Pulzuje tělem a pomalu pluje vodou.','Některé druhy lehce světélkují.','Žahavými chapadly loví drobnou potravu.','Pohybuje se hlavně s mořským proudem.']},
-      {emoji:'🐙', name:'Chobotnice korálová', facts:['Vmáčkne se do malé skuliny mezi korály.','Je velmi inteligentní – umí se učit.','Umí otevírat schránky a hledat úkryty.','Mění barvu i povrch kůže během chvilky.']}
+      {emoji:'🐠', name:'Klauní rybka (Nemo)', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Clown_fish_in_the_Andaman_Coral_Reef.jpg/500px-Clown_fish_in_the_Andaman_Coral_Reef.jpg', facts:['Žije v sasankách, které ji chrání.','Je imunní vůči žahavým chapadlům sasanky.','Mláďata si hlídá hlavně tatínek.','Vždy se vrací do stejné sasanky.']},
+      {emoji:'🐡', name:'Ryba čtverzubec', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Tetraodon-hispidus.jpg/500px-Tetraodon-hispidus.jpg', facts:['Umí se nafouknout, aby ji nikdo nesnědl.','Některé druhy jsou velmi jedovaté.','Plave pomaleji než většina ryb.','Má silné zuby na drcení korýšů.']},
+      {emoji:'🦀', name:'Krab korálový', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Calliactis_and_Dardanus_001.JPG/500px-Calliactis_and_Dardanus_001.JPG', facts:['Žije skrytě mezi korály a kameny.','Klepeta používá na obranu i lov.','Některé druhy si na krunýř pěstují malé sasanky.','Pohybuje se hlavně v noci.']},
+      {emoji:'🐢', name:'Karetová želva', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Eretmochelys-imbricata-K%C3%A9lonia-2.JPG/500px-Eretmochelys-imbricata-K%C3%A9lonia-2.JPG', facts:['Pomáhá udržovat útes zdravý – sní houby.','Má krásný, vzorovaný krunýř.','Dýchá vzduch, i když žije v moři.','Na nádech musí čas od času vyplout na hladinu.']},
+      {emoji:'🦞', name:'Humr', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/KreeftbijDenOsse.jpg/500px-KreeftbijDenOsse.jpg', facts:['Umí „cvakat" klepety a vydávat zvuky.','Když mu klepeto upadne, doroste nové.','Aby mohl růst, musí svlékat svůj pancíř.','Chodí po dně na deseti nohách.']},
+      {emoji:'🦑', name:'Sépie', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Sepia_com%C3%BAn_%28Sepia_officinalis%29%2C_Parque_natural_de_la_Arr%C3%A1bida%2C_Portugal%2C_2020-07-21%2C_DD_62.jpg/500px-Sepia_com%C3%BAn_%28Sepia_officinalis%29%2C_Parque_natural_de_la_Arr%C3%A1bida%2C_Portugal%2C_2020-07-21%2C_DD_62.jpg', facts:['Umí bleskově měnit barvu i vzor kůže.','Má skvělé oči, vidí i v hloubce.','Stejně jako chobotnice vystřikuje inkoust.','Plave pomocí ploutve kolem celého těla.']},
+      {emoji:'🦈', name:'Žralok útesový', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Blacktip_reef_shark_%28Carcharhinus_melanopterus%29_Moorea.jpg/500px-Blacktip_reef_shark_%28Carcharhinus_melanopterus%29_Moorea.jpg', facts:['Je menší a klidnější než žralok bílý.','Pomáhá udržovat útes v rovnováze.','Přes den často odpočívá na dně.','Loví hlavně ryby a chobotnice.']},
+      {emoji:'🪼', name:'Medúza korálová', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Fkeysmacro.jpg/500px-Fkeysmacro.jpg', facts:['Pulzuje tělem a pomalu pluje vodou.','Některé druhy lehce světélkují.','Žahavými chapadly loví drobnou potravu.','Pohybuje se hlavně s mořským proudem.']},
+      {emoji:'🐙', name:'Chobotnice korálová', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Octopus2.jpg/500px-Octopus2.jpg', facts:['Vmáčkne se do malé skuliny mezi korály.','Je velmi inteligentní – umí se učit.','Umí otevírat schránky a hledat úkryty.','Mění barvu i povrch kůže během chvilky.']}
     ],
     quiz:[
       {q:'Proč klauní rybka žije v sasance?', options:['Je tam teplo','Sasanka ji chrání','Má tam jídlo zdarma'], correct:1},
       {q:'Co dělá ryba čtverzubec, když se bojí?', options:['Uteče','Nafoukne se','Schová se do písku'], correct:1},
       {q:'Jak karetová želva pomáhá útesu?', options:['Staví korály','Sní houby','Čistí vodu ploutvemi'], correct:1},
       {q:'Co umí sépie velmi rychle?', options:['Plavat pozpátku','Změnit barvu kůže','Létat'], correct:1},
-      {q:'Co se stane, když humrovi upadne klepeto?', options:['Zůstane bez něj','Doroste nové','Umře'], correct:1}
+      {q:'Co se stane, když humrovi upadne klepeto?', options:['Zůstane bez něj','Doroste nové','Umře'], correct:1},
+      {q:'Proč je klauní rybka imunní vůči sasance?', options:['Má silnou kůži','Je odolná vůči jejím žahavým chapadlům','Nikdy se jí nedotkne'], correct:1},
+      {q:'Kdo se hlavně stará o mláďata klauní rybky?', options:['Maminka','Tatínek','Nikdo'], correct:1},
+      {q:'Na co má ryba čtverzubec silné zuby?', options:['Na drcení korýšů','Na žvýkání řas','Nemá zuby'], correct:0},
+      {q:'Kdy se krab korálový pohybuje nejvíc?', options:['Ve dne','V noci','Nikdy'], correct:1},
+      {q:'Co dýchá karetová želva?', options:['Vodu','Vzduch','Písek'], correct:1},
+      {q:'Co musí humr dělat, aby rostl?', options:['Svlékat pancíř','Spát víc','Plavat rychleji'], correct:0},
+      {q:'Na kolika nohách chodí humr po dně?', options:['Na šesti','Na deseti','Na dvou'], correct:1},
+      {q:'Čím sépie loví a vidí i v hloubce?', options:['Skvělýma očima','Nosem','Nemá smysly'], correct:0},
+      {q:'Co dělá žralok útesový pro útes?', options:['Pomáhá udržovat rovnováhu','Ničí korály','Nic'], correct:0},
+      {q:'Jak se pohybuje medúza korálová?', options:['Rychle plave proti proudu','Pulzuje a pluje s proudem','Leze po dně'], correct:1}
     ]
   },
   {
@@ -714,22 +791,32 @@ const HABITATS = [
       'Někteří dinosauři byli menší než kuře, jiní větší než dům.'
     ],
     animals:[
-      {emoji:'🦖', name:'Tyranosaurus Rex', facts:['Měl jedno z nejsilnějších kousnutí v historii.','Jeho zuby byly velké jako banány.','Měřil na výšku jako dvoupatrový dům.','Předníma nohama byl menší než dospělý člověk.']},
-      {emoji:'🦕', name:'Brachiosaurus', facts:['Byl jeden z nejvyšších dinosaurů – jako žirafa, jen větší.','Žral listy z vrcholků stromů.','Jeho krk mu pomáhal dosáhnout vysoko do korun stromů.','Byl to obrovský, ale klidný býložravec.']},
-      {emoji:'🦕', name:'Diplodokus', facts:['Měl extrémně dlouhý ocas i krk.','Mohl být dlouhý jako tři autobusy.','Ocasem se možná oháněl jako bičem na obranu.','Cestoval ve velkých stádech.']},
-      {emoji:'🦖', name:'Velociraptor', facts:['Byl menší, než ve filmech – jako velký pes.','Lovil pravděpodobně ve skupinách.','Na nohou měl ostrý drápek na kořist.','Pravděpodobně byl pokrytý peřím.']},
-      {emoji:'🦕', name:'Triceratops', facts:['Měl na hlavě tři rohy a velký kostěný límec.','Živil se rostlinami.','Límec ho možná chránil při bojích.','Vážil tolik jako dnešní slon.']},
-      {emoji:'🦕', name:'Stegosaurus', facts:['Na hřbetě měl řadu velkých kostěných destiček.','Na ocasu měl ostny na obranu.','Destičky mu možná pomáhaly i s regulací tepla.','Měl velmi malou hlavu na své tělo.']},
-      {emoji:'🦅', name:'Pteranodon', facts:['Nebyl dinosaurus, ale létající plaz.','Měl rozpětí křídel jako malé letadlo.','Lovil ryby nad mořem podobně jako pelikán.','Místo zubů měl dlouhý zobák.']},
-      {emoji:'🦎', name:'Ankylosaurus', facts:['Byl jako „tank" s pancířem a kyjem na ocasu.','Pancíř ho chránil před predátory.','Kyjem na ocasu se mohl ohnat proti útočníkovi.','Živil se nízkými rostlinami.']},
-      {emoji:'🐊', name:'Spinosaurus', facts:['Byl možná největší masožravý dinosaurus – větší než T-Rex.','Pravděpodobně uměl plavat a lovit ryby.','Na hřbetě měl vysokou kostěnou plachtu.','Žil částečně ve vodě jako dnešní krokodýli.']}
+      {emoji:'🦖', name:'Tyranosaurus Rex', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Tyrannosaurus-rex-Profile-steveoc86_%28coloured%29%28mirror%29.png/500px-Tyrannosaurus-rex-Profile-steveoc86_%28coloured%29%28mirror%29.png', facts:['Měl jedno z nejsilnějších kousnutí v historii.','Jeho zuby byly velké jako banány.','Měřil na výšku jako dvoupatrový dům.','Předníma nohama byl menší než dospělý člověk.']},
+      {emoji:'🦕', name:'Brachiosaurus', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Brachiosaurus_altithorax_side_profile.png/500px-Brachiosaurus_altithorax_side_profile.png', facts:['Byl jeden z nejvyšších dinosaurů – jako žirafa, jen větší.','Žral listy z vrcholků stromů.','Jeho krk mu pomáhal dosáhnout vysoko do korun stromů.','Byl to obrovský, ale klidný býložravec.']},
+      {emoji:'🦕', name:'Diplodokus', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Diplodocus_carnegii.jpg/500px-Diplodocus_carnegii.jpg', facts:['Měl extrémně dlouhý ocas i krk.','Mohl být dlouhý jako tři autobusy.','Ocasem se možná oháněl jako bičem na obranu.','Cestoval ve velkých stádech.']},
+      {emoji:'🦖', name:'Velociraptor', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Velociraptor_Restoration.png/500px-Velociraptor_Restoration.png', facts:['Byl menší, než ve filmech – jako velký pes.','Lovil pravděpodobně ve skupinách.','Na nohou měl ostrý drápek na kořist.','Pravděpodobně byl pokrytý peřím.']},
+      {emoji:'🦕', name:'Triceratops', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Triceratops_horridus.png/500px-Triceratops_horridus.png', facts:['Měl na hlavě tři rohy a velký kostěný límec.','Živil se rostlinami.','Límec ho možná chránil při bojích.','Vážil tolik jako dnešní slon.']},
+      {emoji:'🦕', name:'Stegosaurus', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Stegosaurus_stenops_Life_Reconstruction.png/500px-Stegosaurus_stenops_Life_Reconstruction.png', facts:['Na hřbetě měl řadu velkých kostěných destiček.','Na ocasu měl ostny na obranu.','Destičky mu možná pomáhaly i s regulací tepla.','Měl velmi malou hlavu na své tělo.']},
+      {emoji:'🦅', name:'Pteranodon', photo:'https://upload.wikimedia.org/wikipedia/commons/1/1f/Pteranodon_longiceps_mmartyniuk_wiki.png', facts:['Nebyl dinosaurus, ale létající plaz.','Měl rozpětí křídel jako malé letadlo.','Lovil ryby nad mořem podobně jako pelikán.','Místo zubů měl dlouhý zobák.']},
+      {emoji:'🦎', name:'Ankylosaurus', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Ankylosaurus.jpg/500px-Ankylosaurus.jpg', facts:['Byl jako „tank" s pancířem a kyjem na ocasu.','Pancíř ho chránil před predátory.','Kyjem na ocasu se mohl ohnat proti útočníkovi.','Živil se nízkými rostlinami.']},
+      {emoji:'🐊', name:'Spinosaurus', photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Spinosaurus_aegyptiacus_life_reconstruction.png/500px-Spinosaurus_aegyptiacus_life_reconstruction.png', facts:['Byl možná největší masožravý dinosaurus – větší než T-Rex.','Pravděpodobně uměl plavat a lovit ryby.','Na hřbetě měl vysokou kostěnou plachtu.','Žil částečně ve vodě jako dnešní krokodýli.']}
     ],
     quiz:[
       {q:'Který dinosaurus měl tři rohy?', options:['Triceratops','Stegosaurus','Velociraptor'], correct:0},
       {q:'Co měl stegosaurus na hřbetě?', options:['Křídla','Kostěné destičky','Srst'], correct:1},
       {q:'Byl pteranodon dinosaurus?', options:['Ano','Ne, byl to létající plaz','Byl to pták'], correct:1},
       {q:'Který dinosaurus byl možná větší než T-Rex?', options:['Spinosaurus','Velociraptor','Ankylosaurus'], correct:0},
-      {q:'Jak velký byl velociraptor ve skutečnosti?', options:['Jako slon','Jako velký pes','Jako myš'], correct:1}
+      {q:'Jak velký byl velociraptor ve skutečnosti?', options:['Jako slon','Jako velký pes','Jako myš'], correct:1},
+      {q:'Jak silné bylo kousnutí T-Rexe?', options:['Jedno z nejsilnějších v historii','Velmi slabé','Stejné jako u člověka'], correct:0},
+      {q:'Jak velké byly zuby T-Rexe?', options:['Jako zrnka rýže','Jako banány','Jako jehly'], correct:1},
+      {q:'Čím se živil brachiosaurus?', options:['Masem','Listy z vrcholků stromů','Rybami'], correct:1},
+      {q:'Jak dlouhý mohl být diplodokus?', options:['Jako jedno auto','Jako tři autobusy','Jako kolo'], correct:1},
+      {q:'K čemu diplodokus možná používal ocas?', options:['Na obranu jako bič','K plavání','K létání'], correct:0},
+      {q:'Jak lovil velociraptor?', options:['Sám','Pravděpodobně ve skupinách','Nikdy nelovil'], correct:1},
+      {q:'K čemu sloužil límec triceratopse?', options:['K létání','Možná k ochraně při bojích','K plavání'], correct:1},
+      {q:'Co měl ankylosaurus na ocasu?', options:['Křídla','Kostěný kyj','Plachtu'], correct:1},
+      {q:'Čím lovil pteranodon ryby?', options:['Zuby','Dlouhým zobákem','Drápy'], correct:1},
+      {q:'Co mohlo pomáhat stegosaurovi s teplem?', options:['Ocas','Kostěné destičky na hřbetě','Nohy'], correct:1}
     ]
   }
 ];
@@ -742,7 +829,8 @@ let state = {
   habitatId:null,
   quizIndex:0,
   quizScore:0,
-  answered:false
+  answered:false,
+  activeQuiz:[]
 };
 
 function getBadges(){
@@ -756,6 +844,33 @@ function saveBadge(id){
     b.push(id);
     try{ localStorage.setItem('habitatBadges', JSON.stringify(b)); }catch(e){}
   }
+}
+
+/* Replace a photo <img> with its emoji fallback if the image fails to load */
+function imgFallback(img, emoji, modal){
+  if(modal){
+    const div = document.createElement('div');
+    div.className='modal-emoji';
+    div.textContent = emoji;
+    img.replaceWith(div);
+  }else{
+    img.replaceWith(document.createTextNode(emoji));
+  }
+}
+
+/* Shuffle helper (Fisher-Yates) */
+function shuffleArray(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+/* Pick a random subset of quiz questions for a habitat (so quizzes vary each time) */
+function pickQuiz(h){
+  const count = Math.min(5, h.quiz.length);
+  return shuffleArray(h.quiz).slice(0, count);
 }
 
 /* =======================================================
@@ -869,7 +984,7 @@ function renderHabitat(){
 
   const animalSpots = h.animals.map((a,i)=>`
     <button class="animal-spot" data-animal="${i}">
-      <div class="animal-circle">${a.emoji}</div>
+      <div class="animal-circle">${a.photo ? `<img src="${a.photo}" alt="${a.name}" loading="lazy" onerror="imgFallback(this,'${a.emoji}',false)">` : a.emoji}</div>
       <div class="animal-name">${a.name}</div>
     </button>
   `).join('');
@@ -906,6 +1021,7 @@ function renderHabitat(){
   });
   document.getElementById('startQuiz').addEventListener('click', ()=>{
     state.screen='quiz';
+    state.activeQuiz=pickQuiz(h);
     state.quizIndex=0;
     state.quizScore=0;
     state.answered=false;
@@ -920,7 +1036,7 @@ function showAnimalModal(habitat, idx){
   overlay.innerHTML = `
     <div class="modal-card">
       <button class="modal-close" id="closeModal">✖️</button>
-      <div class="modal-emoji">${a.emoji}</div>
+      ${a.photo ? `<img class="modal-photo" src="${a.photo}" alt="${a.name}" loading="lazy" onerror="imgFallback(this,'${a.emoji}',true)">` : `<div class="modal-emoji">${a.emoji}</div>`}
       <h3>${a.name}</h3>
       ${a.facts.map(f=>`<div class="fact-row"><span class="fact-emoji">✨</span><span>${f}</span></div>`).join('')}
     </div>
@@ -934,9 +1050,10 @@ function showAnimalModal(habitat, idx){
 function renderQuiz(){
   const h = HABITATS.find(x=>x.id===state.habitatId);
   setTheme(h.theme);
-  const q = h.quiz[state.quizIndex];
+  const quiz = state.activeQuiz;
+  const q = quiz[state.quizIndex];
 
-  const dots = h.quiz.map((_,i)=>{
+  const dots = quiz.map((_,i)=>{
     let cls='quiz-dot';
     if(i<state.quizIndex) cls+=' done';
     else if(i===state.quizIndex) cls+=' current';
@@ -949,7 +1066,7 @@ function renderQuiz(){
     <div class="topbar">
       <button class="icon-btn" id="goHome">🏠</button>
       <div class="title-row"></div>
-      <div class="badge-counter">❓ ${state.quizIndex+1}/${h.quiz.length}</div>
+      <div class="badge-counter">❓ ${state.quizIndex+1}/${quiz.length}</div>
     </div>
     <div class="habitat-banner ${h.card}">
       <span class="emoji-big">${h.emoji}</span>
@@ -991,7 +1108,7 @@ function renderQuiz(){
       }
 
       const nextWrap = document.getElementById('nextWrap');
-      const isLast = state.quizIndex === h.quiz.length-1;
+      const isLast = state.quizIndex === quiz.length-1;
       const btnLabel = isLast ? '🏁 Zobrazit výsledek' : '➡️ Další otázka';
       nextWrap.innerHTML = `<button class="next-btn" id="nextBtn">${btnLabel}</button>`;
       document.getElementById('nextBtn').addEventListener('click', ()=>{
@@ -1010,7 +1127,7 @@ function renderQuiz(){
 function renderResult(){
   const h = HABITATS.find(x=>x.id===state.habitatId);
   setTheme(h.theme);
-  const total = h.quiz.length;
+  const total = state.activeQuiz.length;
   const score = state.quizScore;
   const passed = score >= Math.ceil(total*0.6);
 
@@ -1049,7 +1166,7 @@ function renderResult(){
   document.getElementById('goHome').addEventListener('click', ()=>{ state.screen='home'; render(); });
   document.getElementById('goBadges2').addEventListener('click', ()=>{ state.screen='badges'; render(); });
   document.getElementById('retryQuiz').addEventListener('click', ()=>{
-    state.screen='quiz'; state.quizIndex=0; state.quizScore=0; state.answered=false; render();
+    state.screen='quiz'; state.activeQuiz=pickQuiz(h); state.quizIndex=0; state.quizScore=0; state.answered=false; render();
   });
   document.getElementById('backHabitat').addEventListener('click', ()=>{
     state.screen='habitat'; render();
