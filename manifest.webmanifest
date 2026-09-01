@@ -1,0 +1,15 @@
+{
+  "name": "Objevuj Zeměkouli! — Kvízy",
+  "short_name": "Zeměkoule",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#a2d2ff",
+  "theme_color": "#a2d2ff",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
