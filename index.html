@@ -45,6 +45,7 @@
   body.theme-insects{background:linear-gradient(160deg,#eaffc7 0%,#a3c644 55%,#3a5a1f 100%);}
   body.theme-deepsea{background:linear-gradient(160deg,#114b5f 0%,#0a2e42 55%,#010b13 100%);}
   body.theme-bakugan{background:linear-gradient(160deg,#9d4edd 0%,#4c1d95 55%,#0b0620 100%);}
+  body.theme-jokes{background:linear-gradient(160deg,#ffd6a5 0%,#ff8fab 55%,#c9184a 100%);}
 
   #app{
     max-width:900px;
@@ -188,6 +189,7 @@
   .hc-insects{background:linear-gradient(150deg,#cdeb8b,#5a7d1f);}
   .hc-deepsea{background:linear-gradient(150deg,#1b6b93,#02111b);}
   .hc-bakugan{background:linear-gradient(150deg,#9d4edd,#240046);}
+  .hc-jokes{background:linear-gradient(150deg,#ffb4a2,#e5383b);}
 
   @keyframes float{
     0%,100%{transform:translateY(0);}
@@ -6000,6 +6002,266 @@ const HABITATS = [
           "Šest",
           "Dva",
           "Deset"
+        ],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "jokes",
+    "name": "Vtipy a hádanky",
+    "emoji": "😂",
+    "theme": "jokes",
+    "card": "hc-jokes",
+    "intro": "Zasměj se s námi! Přečti si vtip, zkus uhodnout pointu a odpověz na vtipné otázky.",
+    "didYouKnow": [
+      "Děti se v průměru zasmějou mnohem víckrát za den než dospělí.",
+      "Smích je nakažlivý – když se rozesměje jeden člověk, brzy se přidají i ostatní kolem.",
+      "Hádanky a vtipy trénují mozek, protože si musíš pointu nejdřív sám domyslet."
+    ],
+    "animals": [
+      {
+        "emoji": "🐘",
+        "name": "Slon v ledničce",
+        "photo": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNDAwIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmZmQxNjYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZjc3ZjAwIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgcng9IjQwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHRleHQgeD0iMjAwIiB5PSIyNDAiIGZvbnQtc2l6ZT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj7wn5CYPC90ZXh0Pgo8L3N2Zz4=",
+        "facts": [
+          "Otázka: Jak dáš slona do ledničky?",
+          "Odpověď: Otevřeš dveře, dáš ho tam a zavřeš!",
+          "Je to vtipné, protože slon je obrovský a do malé ledničky by se v reálu vůbec nevešel.",
+          "Tenhle vtip je jeden z nejznámějších na světě a existuje o něm celá řada pokračování."
+        ]
+      },
+      {
+        "emoji": "🐢",
+        "name": "Pomalá želva",
+        "photo": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNDAwIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNhOGRhZGMiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNDU3YjlkIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgcng9IjQwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHRleHQgeD0iMjAwIiB5PSIyNDAiIGZvbnQtc2l6ZT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj7wn5CiPC90ZXh0Pgo8L3N2Zz4=",
+        "facts": [
+          "Otázka: Proč jde želva tak pomalu?",
+          "Odpověď: Protože nosí na zádech celý svůj barák, a to je docela těžké!",
+          "Je to vtipné, protože si představíme, jak bychom se my pohybovali s domem na zádech.",
+          "Ve skutečnosti je krunýř pro želvu domovem i štítem zároveň."
+        ]
+      },
+      {
+        "emoji": "🐑",
+        "name": "Počítání oveček",
+        "photo": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNDAwIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNlMGZiZmMiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjOThjMWQ5Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgcng9IjQwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHRleHQgeD0iMjAwIiB5PSIyNDAiIGZvbnQtc2l6ZT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj7wn5CRPC90ZXh0Pgo8L3N2Zz4=",
+        "facts": [
+          "Otázka: Proč si pastýř nikdy nedopočítá své ovce?",
+          "Odpověď: Protože pokaždé usne dřív, než domočítá!",
+          "Je to vtipné, protože počítání oveček má lidem naopak pomáhat usnout – a tady to funguje až moc dobře.",
+          "Spousta lidí si opravdu v hlavě představuje přeskakující ovečky, když nemůže usnout."
+        ]
+      },
+      {
+        "emoji": "🐟",
+        "name": "Ryba a internet",
+        "photo": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNDAwIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM5MGUwZWYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDA3N2I2Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgcng9IjQwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHRleHQgeD0iMjAwIiB5PSIyNDAiIGZvbnQtc2l6ZT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj7wn5CfPC90ZXh0Pgo8L3N2Zz4=",
+        "facts": [
+          "Otázka: Proč se ryba bojí internetu?",
+          "Odpověď: Kvůli síti!",
+          "Je to vtipné, protože slovo síť znamená jak rybářskou síť, tak internetovou síť.",
+          "Tomuhle typu vtipu se říká slovní hříčka – jedno slovo má dva různé významy."
+        ]
+      },
+      {
+        "emoji": "⛄",
+        "name": "Sněhulák na jaře",
+        "photo": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNDAwIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNkZmY2ZmYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjYTJkMmZmIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgcng9IjQwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHRleHQgeD0iMjAwIiB5PSIyNDAiIGZvbnQtc2l6ZT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj7im4Q8L3RleHQ+Cjwvc3ZnPg==",
+        "facts": [
+          "Otázka: Co dělá sněhulák, když přijde jaro?",
+          "Odpověď: Kaluž!",
+          "Je to vtipné, protože sněhulák na jaře skutečně roztaje a zbyde po něm jen louže vody.",
+          "Sněhuláci proto vydrží jen v zimě, kdy je dostatek mrazu."
+        ]
+      },
+      {
+        "emoji": "🌈",
+        "name": "Barevná duha",
+        "photo": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNDAwIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmZmIzYzYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmY4ZmFiIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgcng9IjQwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHRleHQgeD0iMjAwIiB5PSIyNDAiIGZvbnQtc2l6ZT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj7wn4yIPC90ZXh0Pgo8L3N2Zz4=",
+        "facts": [
+          "Otázka: Co má sedm barev a objeví se po dešti?",
+          "Odpověď: Duha!",
+          "Je to spíš hádanka než vtip, ale pointa je v tom, že odpověď je vlastně úplně jednoduchá.",
+          "Duha vzniká, když sluneční paprsky projdou kapkami vody ve vzduchu a rozdělí se na barvy."
+        ]
+      },
+      {
+        "emoji": "🪞",
+        "name": "Mlčenlivé zrcadlo",
+        "photo": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNDAwIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNlMmUyZTIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjOGQ5OWFlIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgcng9IjQwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHRleHQgeD0iMjAwIiB5PSIyNDAiIGZvbnQtc2l6ZT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj7wn6qePC90ZXh0Pgo8L3N2Zz4=",
+        "facts": [
+          "Otázka: Co ti ukáže tvůj obličej, ale nikdy nepromluví?",
+          "Odpověď: Zrcadlo!",
+          "Je to hádanka, kde musíš přijít na to, co nás dokáže napodobit, aniž by umělo mluvit.",
+          "Zrcadlo funguje tak, že odráží světlo přesně tak, jak na něj dopadá."
+        ]
+      },
+      {
+        "emoji": "🐓",
+        "name": "Slepice, nebo vejce",
+        "photo": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNDAwIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmZmUwNjYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZjRhMjYxIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgcng9IjQwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHRleHQgeD0iMjAwIiB5PSIyNDAiIGZvbnQtc2l6ZT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj7wn5CTPC90ZXh0Pgo8L3N2Zz4=",
+        "facts": [
+          "Otázka: Co bylo dřív – slepice, nebo vejce?",
+          "Odpověď: Kohout!",
+          "Je to vtipné, protože je to slavná záhada, na kterou vtip odpoví úplně jinak, než čekáš.",
+          "Ve skutečnosti se touto otázkou zabývali i opravdoví vědci."
+        ]
+      },
+      {
+        "emoji": "🍩",
+        "name": "Smutná kobliha",
+        "photo": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNDAwIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmZmM4ZGQiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjY2RiNGRiIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgcng9IjQwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHRleHQgeD0iMjAwIiB5PSIyNDAiIGZvbnQtc2l6ZT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj7wn42pPC90ZXh0Pgo8L3N2Zz4=",
+        "facts": [
+          "Otázka: Proč je kobliha pořád smutná?",
+          "Odpověď: Protože má díru přímo uprostřed!",
+          "Je to vtipné, protože díra v koblize je normální a patří k ní, ale ve vtipu z ní uděláme smutek.",
+          "Kobliha s dírkou uprostřed se peče tak, aby se propekla rovnoměrně po celém obvodu."
+        ]
+      }
+    ],
+    "quiz": [
+      {
+        "q": "Co uděláš první, když chceš dát slona do ledničky podle vtipu?",
+        "options": [
+          "Otevřeš dveře",
+          "Zavoláš zvěřinec",
+          "Zavoláš hasiče"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Proč jde želva podle vtipu tak pomalu?",
+        "options": [
+          "Nosí na zádech celý barák",
+          "Bolí ji noha",
+          "Nechce nikam spěchat"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Proč si pastýř podle vtipu nikdy nedopočítá ovce?",
+        "options": [
+          "Pokaždé usne dřív",
+          "Ovce mu utíkají",
+          "Neumí počítat"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Čeho se podle vtipu bojí ryba na internetu?",
+        "options": [
+          "Sítě",
+          "Myši",
+          "Obrazovky"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Co zbyde ze sněhuláka na jaře?",
+        "options": [
+          "Kaluž",
+          "Sníh",
+          "Nic, zmizí beze stopy"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Kolik barev má podle hádanky duha?",
+        "options": [
+          "Sedm",
+          "Tři",
+          "Dvacet"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Co ti ukáže obličej, ale nikdy nepromluví?",
+        "options": [
+          "Zrcadlo",
+          "Kamarád",
+          "Pes"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Co bylo podle vtipu dřív než slepice a vejce?",
+        "options": [
+          "Kohout",
+          "Kachna",
+          "Nic"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Proč je podle vtipu kobliha smutná?",
+        "options": [
+          "Má díru uprostřed",
+          "Je moc sladká",
+          "Nikdo ji nechce sníst"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Jak se říká vtipu, kde jedno slovo má dva významy?",
+        "options": [
+          "Slovní hříčka",
+          "Básnička",
+          "Křížovka"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Co dělá smích, když se směje jeden člověk ve skupině?",
+        "options": [
+          "Je nakažlivý a šíří se dál",
+          "Nikoho jiného to nezajímá",
+          "Ostatní se naopak zamračí"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Proč jsou hádanky dobré pro mozek?",
+        "options": [
+          "Musíš si pointu sám domyslet",
+          "Jsou vždycky velmi dlouhé",
+          "Musíš je umět nazpaměť"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Jak vznikne duha?",
+        "options": [
+          "Sluneční paprsky se rozdělí v kapkách vody",
+          "Namaluje ji vítr",
+          "Spadne z mraku"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Co dělá zrcadlo se světlem?",
+        "options": [
+          "Odráží ho přesně tak, jak dopadá",
+          "Pohlcuje ho úplně celé",
+          "Mění ho na duhu"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Jak se peče kobliha, aby byla propečená rovnoměrně?",
+        "options": [
+          "S dírkou uprostřed",
+          "Vždy hranatá",
+          "Bez těsta"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Co mají společné dobré vtipy a hádanky?",
+        "options": [
+          "Vtipnou nebo překvapivou pointu",
+          "Musí být vždycky smutné",
+          "Nikdy nemají odpověď"
         ],
         "correct": 0
       }
@@ -13341,6 +13603,350 @@ const ANIMAL_QUIZZES = {
           "S Bakuganem Drago",
           "S Bakuganem Saurus",
           "S Bakuganem Griffon"
+        ],
+        "correct": 0
+      }
+    ]
+  ],
+  "jokes": [
+    [
+      {
+        "q": "Co je první krok, jak dostat slona do ledničky?",
+        "options": [
+          "Otevřít dveře ledničky",
+          "Zavolat zoo",
+          "Postavit větší ledničku"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Proč je tenhle vtip vtipný?",
+        "options": [
+          "Slon je obrovský a do ledničky by se nevešel",
+          "Slon nemá rád zimu",
+          "Ledničky jsou barevné"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Jaký typ vtipu to je?",
+        "options": [
+          "Absurdní, přehnaně jednoduchá odpověď",
+          "Slovní hříčka",
+          "Hádanka o barvách"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Co dělá tenhle vtip tak známý?",
+        "options": [
+          "Existuje o něm spousta pokračování",
+          "Je úplně nový",
+          "Nikdo mu nerozumí"
+        ],
+        "correct": 0
+      }
+    ],
+    [
+      {
+        "q": "Proč jde želva podle vtipu tak pomalu?",
+        "options": [
+          "Nosí na zádech těžký barák",
+          "Má krátké nohy",
+          "Nechce se jí nikam jít"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Co vlastně je želví krunýř?",
+        "options": [
+          "Domov i štít zároveň",
+          "Jen ozdoba",
+          "Klobouk"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Proč se nám vtip o želvě zdá vtipný?",
+        "options": [
+          "Představíme si sami sebe s domem na zádech",
+          "Želvy neexistují",
+          "Je smutný"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Jaké zvíře je hlavní postavou vtipu?",
+        "options": [
+          "Želva",
+          "Slon",
+          "Ovce"
+        ],
+        "correct": 0
+      }
+    ],
+    [
+      {
+        "q": "Proč si pastýř nikdy nedopočítá ovce?",
+        "options": [
+          "Pokaždé usne dřív, než domočítá",
+          "Ovce se mu ztratí",
+          "Neumí počítat do sta"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "K čemu má počítání oveček lidem obvykle pomoct?",
+        "options": [
+          "Aby lépe usnuli",
+          "Aby se naučili počítat",
+          "Aby si zapamatovali čísla"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "V čem je pointa vtipu o pastýři?",
+        "options": [
+          "Počítání ho uspí až moc dobře",
+          "Ovce umí mluvit",
+          "Pastýř nemá žádné ovce"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Co si lidé často představují, když nemohou usnout?",
+        "options": [
+          "Přeskakující ovečky",
+          "Padající hvězdy",
+          "Plavající ryby"
+        ],
+        "correct": 0
+      }
+    ],
+    [
+      {
+        "q": "Čeho se ryba podle vtipu bojí na internetu?",
+        "options": [
+          "Sítě",
+          "Rybáře",
+          "Počítačové myši"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Proč vtip funguje na slově \"síť\"?",
+        "options": [
+          "Znamená rybářskou i internetovou síť",
+          "Je to jméno ryby",
+          "Je to název oceánu"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Jak se říká vtipu založenému na dvojím významu slova?",
+        "options": [
+          "Slovní hříčka",
+          "Říkanka",
+          "Rým"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Čím rybáři chytají ryby ve skutečnosti?",
+        "options": [
+          "Sítí nebo udicí",
+          "Počítačem",
+          "Deštníkem"
+        ],
+        "correct": 0
+      }
+    ],
+    [
+      {
+        "q": "Co udělá sněhulák, když přijde jaro?",
+        "options": [
+          "Roztaje a zbyde z něj kaluž",
+          "Odletí pryč",
+          "Zůstane stejný"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Proč sněhulák na jaře roztaje?",
+        "options": [
+          "Protože už není dost mrazu",
+          "Protože je líný",
+          "Protože ho sní zvířata"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Kdy sněhulák nejlépe vydrží?",
+        "options": [
+          "V zimě, kdy mrzne",
+          "V létě",
+          "Na podzim"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Co zbyde po roztátém sněhulákovi?",
+        "options": [
+          "Louže vody",
+          "Kus ledu navždy",
+          "Sníh, který nezmizí"
+        ],
+        "correct": 0
+      }
+    ],
+    [
+      {
+        "q": "Co má sedm barev a objeví se po dešti?",
+        "options": [
+          "Duha",
+          "Mrak",
+          "Slunce"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Jak duha vlastně vzniká?",
+        "options": [
+          "Sluneční paprsky se rozdělí v kapkách vody",
+          "Namaluje ji vítr",
+          "Spadne z nebe jako pevná věc"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Je tohle spíš vtip, nebo hádanka?",
+        "options": [
+          "Hádanka s jednoduchou odpovědí",
+          "Vtip se slovní hříčkou",
+          "Ani jedno"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Kdy se duha nejčastěji objevuje?",
+        "options": [
+          "Po dešti, když svítí slunce",
+          "Jen v noci",
+          "Jen v zimě"
+        ],
+        "correct": 0
+      }
+    ],
+    [
+      {
+        "q": "Co ti ukáže obličej, ale nikdy nepromluví?",
+        "options": [
+          "Zrcadlo",
+          "Fotoaparát",
+          "Okno"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Jak zrcadlo funguje?",
+        "options": [
+          "Odráží světlo přesně tak, jak na něj dopadá",
+          "Vytváří vlastní světlo",
+          "Mění barvy obličeje"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Proč je tohle hádanka, ne obyčejný vtip?",
+        "options": [
+          "Musíš uhodnout, o čem je řeč",
+          "Má smutnou pointu",
+          "Nemá žádnou odpověď"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Co v hádance dělá zrcadlo zvláštním?",
+        "options": [
+          "Ukazuje tě, ale nemluví",
+          "Umí zpívat",
+          "Umí létat"
+        ],
+        "correct": 0
+      }
+    ],
+    [
+      {
+        "q": "Co bylo podle vtipu dřív než slepice a vejce?",
+        "options": [
+          "Kohout",
+          "Kachna",
+          "Vejce nikdy nebylo"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Proč je vtip o slepici a vejci vtipný?",
+        "options": [
+          "Odpoví úplně jinak, než bys čekal",
+          "Je to vlastně smutné",
+          "Nedává vůbec smysl"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Kdo se otázkou slepice versus vejce zabýval doopravdy?",
+        "options": [
+          "Vědci",
+          "Kuchaři",
+          "Malíři"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Jaké zvíře je v odpovědi na tenhle vtip?",
+        "options": [
+          "Kohout",
+          "Kachna",
+          "Husa"
+        ],
+        "correct": 0
+      }
+    ],
+    [
+      {
+        "q": "Proč je kobliha podle vtipu smutná?",
+        "options": [
+          "Má díru uprostřed",
+          "Je studená",
+          "Nikdo ji nemá rád"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Proč má kobliha díru uprostřed doopravdy?",
+        "options": [
+          "Aby se propekla rovnoměrně",
+          "Aby se lépe balila",
+          "Aby vážila méně"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Co je pointou vtipu o koblize?",
+        "options": [
+          "Díra je normální, ale ve vtipu je to smutek",
+          "Kobliha je vlastně naštvaná",
+          "Kobliha neexistuje"
+        ],
+        "correct": 0
+      },
+      {
+        "q": "Jaké jídlo je hlavní postavou vtipu?",
+        "options": [
+          "Kobliha",
+          "Rohlík",
+          "Koláč"
         ],
         "correct": 0
       }
