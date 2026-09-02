@@ -643,10 +643,102 @@
     margin-top:30px;
     text-shadow:0 1px 3px rgba(0,0,0,0.25);
   }
+
+  #pinLock{
+    position:fixed; inset:0; z-index:9999;
+    display:none; align-items:center; justify-content:center;
+    font-family:'Baloo 2', sans-serif;
+    background:linear-gradient(160deg,#a2d2ff 0%,#9d4edd 55%,#ff5d8f 100%);
+  }
+  #pinLock .pl-card{
+    background:#fff; padding:40px 32px; border-radius:24px;
+    box-shadow:0 20px 50px rgba(0,0,0,.25);
+    text-align:center; max-width:320px; width:90%;
+  }
+  #pinLock .pl-emoji{ font-size:56px; margin-bottom:8px; }
+  #pinLock h1{ font-size:20px; margin:0 0 20px; color:var(--dark); }
+  #pinLock input{
+    font-size:28px; letter-spacing:12px; text-align:center; width:100%;
+    padding:14px 0; border:2px solid #cdb4db; border-radius:14px;
+    box-sizing:border-box; margin-bottom:16px; font-family:inherit;
+  }
+  #pinLock button{
+    width:100%; padding:14px; border:none; border-radius:14px;
+    background:var(--purple); color:#fff; font-size:18px; font-weight:700;
+    cursor:pointer; font-family:inherit;
+  }
+  #pinLock .pl-err{ color:#e5383b; font-size:14px; margin-bottom:12px; min-height:18px; }
 </style>
 </head>
 <body>
+<div id="pinLock">
+  <form class="pl-card" id="pinLockForm">
+    <div class="pl-emoji">🔒</div>
+    <h1>Zadej PIN</h1>
+    <div class="pl-err" id="pinLockErr"></div>
+    <input type="password" id="pinLockInput" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off">
+    <button type="submit">Odemknout</button>
+  </form>
+</div>
 <div id="app"></div>
+
+<script>
+(function(){
+  var PIN_HASH = "5631e5efadc1db19f6b2453cc6a2d6b76a81682d8c8594680343794a2558a91e";
+  var STORAGE_KEY = "teoPinOk";
+  var lock = document.getElementById('pinLock');
+  var app = document.getElementById('app');
+
+  function sha256Hex(text){
+    var data = new TextEncoder().encode(text);
+    return crypto.subtle.digest('SHA-256', data).then(function(buf){
+      var bytes = Array.from(new Uint8Array(buf));
+      return bytes.map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
+    });
+  }
+
+  function showLock(){
+    lock.style.display = 'flex';
+    app.style.display = 'none';
+    document.body.style.overflow = 'hidden';
+    setTimeout(function(){
+      var input = document.getElementById('pinLockInput');
+      if (input) input.focus();
+    }, 50);
+  }
+
+  function hideLock(){
+    lock.style.display = 'none';
+    app.style.display = '';
+    document.body.style.overflow = '';
+  }
+
+  var stored = null;
+  try { stored = localStorage.getItem(STORAGE_KEY); } catch(e){}
+
+  if (stored === PIN_HASH) {
+    hideLock();
+  } else {
+    showLock();
+  }
+
+  document.getElementById('pinLockForm').addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var val = document.getElementById('pinLockInput').value;
+    sha256Hex(val).then(function(hash){
+      if (hash === PIN_HASH) {
+        try { localStorage.setItem(STORAGE_KEY, hash); } catch(e){}
+        document.getElementById('pinLockErr').textContent = '';
+        hideLock();
+      } else {
+        document.getElementById('pinLockErr').textContent = 'Špatný PIN, zkus to znovu.';
+        document.getElementById('pinLockInput').value = '';
+        document.getElementById('pinLockInput').focus();
+      }
+    });
+  });
+})();
+</script>
 
 <script>
 /* =======================================================
