@@ -176,6 +176,33 @@
     font-size:1.1rem;
     box-shadow:0 2px 6px rgba(0,0,0,0.2);
   }
+  @media (max-width:600px){
+    .habitat-grid{
+      grid-template-columns:repeat(3, 1fr);
+      gap:10px;
+    }
+    .habitat-card{
+      aspect-ratio:1/1;
+      padding:10px 6px;
+      border-radius:18px;
+      font-size:0.78rem;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+    }
+    .habitat-card .emoji{
+      font-size:2.3rem;
+      margin-bottom:4px;
+    }
+    .habitat-card .badge-check{
+      width:22px;
+      height:22px;
+      font-size:0.8rem;
+      top:5px;
+      right:5px;
+    }
+  }
   .hc-ocean{background:linear-gradient(150deg,#48cae4,#023e8a);}
   .hc-rainforest{background:linear-gradient(150deg,#95d5b2,#1b4332);}
   .hc-desert{background:linear-gradient(150deg,#ffd97d,#c97b3c);}
