@@ -176,6 +176,12 @@
     font-size:1.1rem;
     box-shadow:0 2px 6px rgba(0,0,0,0.2);
   }
+  .habitat-card .progress-ring{
+    position:absolute;
+    top:8px;
+    left:8px;
+    filter:drop-shadow(0 2px 4px rgba(0,0,0,0.25));
+  }
   @media (max-width:600px){
     .habitat-grid{
       grid-template-columns:repeat(3, 1fr);
@@ -202,7 +208,47 @@
       top:5px;
       right:5px;
     }
+    .habitat-card .progress-ring{
+      top:5px;
+      left:5px;
+      width:22px;
+      height:22px;
+    }
   }
+  /* ===== RESET BUTTONS ===== */
+  .reset-btn{
+    background:rgba(255,255,255,0.9);
+    border:2px solid #e5383b;
+    color:#e5383b;
+    font-weight:800;
+    font-family:inherit;
+    border-radius:14px;
+    padding:8px 14px;
+    font-size:0.9rem;
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .reset-btn:active{transform:scale(0.96);}
+  .animal-reset{
+    position:absolute;
+    top:6px;
+    right:6px;
+    background:#fff;
+    border:none;
+    border-radius:50%;
+    width:26px;
+    height:26px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:0.9rem;
+    box-shadow:0 2px 6px rgba(0,0,0,0.25);
+    cursor:pointer;
+    z-index:2;
+  }
+  .animal-reset:active{transform:scale(0.92);}
   .hc-ocean{background:linear-gradient(150deg,#48cae4,#023e8a);}
   .hc-rainforest{background:linear-gradient(150deg,#95d5b2,#1b4332);}
   .hc-desert{background:linear-gradient(150deg,#ffd97d,#c97b3c);}
@@ -266,6 +312,7 @@
     font-family:inherit;
     color:#fff;
     text-shadow:0 1px 4px rgba(0,0,0,0.35);
+    position:relative;
   }
   .animal-circle{
     width:104px;
@@ -546,6 +593,13 @@
     font-size:1.35rem;
     font-weight:800;
     min-height:1.6em;
+  }
+  @media (max-width:600px){
+    .quiz-card{ padding:14px; }
+    .quiz-card h3{ font-size:1.15rem; margin-bottom:12px; }
+    .quiz-options{ gap:8px; }
+    .quiz-option{ padding:11px 12px; font-size:0.95rem; border-radius:12px; border-width:2px; }
+    .quiz-feedback{ font-size:1rem; margin-top:10px; }
   }
   .quiz-feedback.correct{color:var(--green);}
   .quiz-feedback.wrong{color:#e63946;}
@@ -16160,6 +16214,22 @@ function saveAnimalScore(habitatId, idx, score){
     try{ localStorage.setItem('animalScores', JSON.stringify(s)); }catch(e){}
   }
 }
+/* Reset the saved score of a single animal */
+function resetAnimalScore(habitatId, idx){
+  const s = getAnimalScores();
+  delete s[habitatId+':'+idx];
+  try{ localStorage.setItem('animalScores', JSON.stringify(s)); }catch(e){}
+}
+/* Reset an entire habitat: all its animal scores + its earned badge */
+function resetHabitatProgress(habitatId){
+  const s = getAnimalScores();
+  Object.keys(s).forEach(k=>{
+    if(k.indexOf(habitatId+':')===0) delete s[k];
+  });
+  try{ localStorage.setItem('animalScores', JSON.stringify(s)); }catch(e){}
+  const b = getBadges().filter(id=>id!==habitatId);
+  try{ localStorage.setItem('habitatBadges', JSON.stringify(b)); }catch(e){}
+}
 /* how many animals in a habitat are fully completed (100 %) */
 function habitatDoneCount(h){
   return h.animals.reduce((acc,a,i)=>{
@@ -16289,13 +16359,28 @@ function render(){
   else if(state.screen==='badges') renderBadges();
 }
 
+/* Small ring showing % of animals completed in a habitat (SVG donut) */
+function progressRingSvg(pct){
+  const r = 15, c = 2*Math.PI*r;
+  const offset = c * (1 - Math.max(0,Math.min(100,pct))/100);
+  return `<svg class="progress-ring" viewBox="0 0 36 36" width="30" height="30">
+    <circle cx="18" cy="18" r="${r}" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="4"/>
+    <circle cx="18" cy="18" r="${r}" fill="none" stroke="#fff" stroke-width="4"
+      stroke-dasharray="${c}" stroke-dashoffset="${offset}" stroke-linecap="round"
+      transform="rotate(-90 18 18)"/>
+  </svg>`;
+}
+
 function renderHome(){
   setTheme(null);
   const badges = getBadges();
   const gs = globalStats();
   let cards = HABITATS.map(h=>{
     const has = badges.includes(h.id);
+    const done = habitatDoneCount(h);
+    const pct = h.animals.length ? (done/h.animals.length*100) : 0;
     return `<button class="habitat-card ${h.card}" data-go="${h.id}">
+      ${progressRingSvg(pct)}
       ${has?'<div class="badge-check">⭐</div>':''}
       <span class="emoji">${h.emoji}</span>
       ${h.name}
@@ -16343,8 +16428,12 @@ function renderHabitat(){
     const scoreBadge = total>0
       ? `<div class="animal-score ${done?'done':''}">${done?'⭐ ':''}${best}/${total}</div>`
       : '';
+    const resetBtn = best>0
+      ? `<button class="animal-reset" data-reset-animal="${i}" title="Resetovat toto zvířátko">🔄</button>`
+      : '';
     return `
     <button class="animal-spot" data-animal="${i}">
+      ${resetBtn}
       <div class="animal-circle">${a.photo ? `<img src="${a.photo}" alt="${a.name}" loading="lazy" onerror="imgFallback(this,'${a.emoji}',false)">` : a.emoji}</div>
       <div class="animal-name">${a.name}</div>
       ${scoreBadge}
@@ -16365,6 +16454,9 @@ function renderHabitat(){
       <h2>${h.name}</h2>
       <div style="font-weight:600; margin-top:4px;">${h.intro}</div>
       <div class="banner-stat">✅ Splněná zvířata: ${doneCount}/${h.animals.length}</div>
+      <div style="margin-top:10px;">
+        <button class="reset-btn" id="resetHabitatBtn">🔄 Resetovat kategorii</button>
+      </div>
     </div>
     <div class="animal-grid">${animalSpots}</div>
     <div class="dyk-box">
@@ -16387,6 +16479,23 @@ function renderHabitat(){
     el.addEventListener('click', ()=>{
       showAnimalModal(h, parseInt(el.getAttribute('data-animal')));
     });
+  });
+  document.querySelectorAll('[data-reset-animal]').forEach(btn=>{
+    btn.addEventListener('click', (ev)=>{
+      ev.stopPropagation();
+      const idx = parseInt(btn.getAttribute('data-reset-animal'));
+      const a = h.animals[idx];
+      if(confirm('Resetovat postup u „'+a.name+'"? Tohle se nedá vrátit zpět.')){
+        resetAnimalScore(h.id, idx);
+        render();
+      }
+    });
+  });
+  document.getElementById('resetHabitatBtn').addEventListener('click', ()=>{
+    if(confirm('Resetovat celý postup v kategorii „'+h.name+'"? Smaže se skóre u všech zvířátek i odznak. Tohle se nedá vrátit zpět.')){
+      resetHabitatProgress(h.id);
+      render();
+    }
   });
   document.querySelectorAll('[data-quizset]').forEach(btn=>{
     btn.addEventListener('click', ()=>{
