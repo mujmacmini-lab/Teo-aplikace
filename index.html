@@ -594,12 +594,30 @@
     font-weight:800;
     min-height:1.6em;
   }
+  .fact-hint{
+    margin-top:8px;
+    font-size:1.05rem;
+    font-weight:600;
+    color:#3d2b00;
+    background:#fff8e1;
+    border-radius:12px;
+    padding:10px;
+  }
   @media (max-width:600px){
     .quiz-card{ padding:14px; }
     .quiz-card h3{ font-size:1.15rem; margin-bottom:12px; }
     .quiz-options{ gap:8px; }
     .quiz-option{ padding:11px 12px; font-size:0.95rem; border-radius:12px; border-width:2px; }
     .quiz-feedback{ font-size:1rem; margin-top:10px; }
+    .fact-hint{ font-size:0.85rem; padding:8px; margin-top:6px; }
+    .modal-card{ padding:14px; max-height:94vh; }
+    .modal-photo{
+      height:130px;
+      margin:-14px -14px 10px -14px;
+      width:calc(100% + 28px);
+    }
+    .modal-emoji{ font-size:3.5rem; }
+    .next-btn{ margin-top:10px; padding:11px 20px; font-size:1.05rem; }
   }
   .quiz-feedback.correct{color:var(--green);}
   .quiz-feedback.wrong{color:#e63946;}
@@ -16454,9 +16472,6 @@ function renderHabitat(){
       <h2>${h.name}</h2>
       <div style="font-weight:600; margin-top:4px;">${h.intro}</div>
       <div class="banner-stat">✅ Splněná zvířata: ${doneCount}/${h.animals.length}</div>
-      <div style="margin-top:10px;">
-        <button class="reset-btn" id="resetHabitatBtn">🔄 Resetovat kategorii</button>
-      </div>
     </div>
     <div class="animal-grid">${animalSpots}</div>
     <div class="dyk-box">
@@ -16466,6 +16481,9 @@ function renderHabitat(){
     <div class="quiz-picker-title">📝 Vyber si kvíz o biotopu ${h.name}!</div>
     <div class="quiz-set-grid">
       ${getQuizSets(h).map((set,i)=>`<button class="quiz-cta" data-quizset="${i}">Kvíz ${i+1}</button>`).join('')}
+    </div>
+    <div style="text-align:center; margin:24px 0 8px;">
+      <button class="reset-btn" id="resetHabitatBtn">🔄 Resetovat kategorii</button>
     </div>
   `;
 
@@ -16599,7 +16617,7 @@ function showAnimalModal(habitat, idx){
         }
         // show the fact as a little hint / reinforcement
         if(a.facts && a.facts[qIndex]){
-          feedback.innerHTML += `<div style="margin-top:8px; font-size:1.05rem; font-weight:600; color:#3d2b00; background:#fff8e1; border-radius:12px; padding:10px;">💡 ${a.facts[qIndex]}</div>`;
+          feedback.innerHTML += `<div class="fact-hint">💡 ${a.facts[qIndex]}</div>`;
         }
 
         const isLast = qIndex === quiz.length-1;
